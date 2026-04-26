@@ -6,6 +6,7 @@ export interface Pin {
   category: Category[]; // Mandatory array
   description: string;
   building: string;
+  floors: string[]; // Standardized floor array
   tags: string[]; // Mandatory array
   howToGetThere?: string;
   coordinates: [number, number]; // [lat, lng]

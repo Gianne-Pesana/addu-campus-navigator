@@ -33,6 +33,7 @@ export default function MapPage() {
           category: feature.properties.category,
           description: feature.properties.description,
           building: feature.properties.building,
+          floors: feature.properties.floors,
           tags: feature.properties.tags,
           howToGetThere: feature.properties.howToGetThere,
           coordinates: [feature.geometry.coordinates[1], feature.geometry.coordinates[0]] // [lat, lng]

@@ -8,6 +8,29 @@ interface BottomSheetProps {
   onClose: () => void;
 }
 
+/**
+ * Formats the floor array into a standardized display string.
+ */
+const formatFloors = (floors: string[]): string => {
+  if (!floors || floors.length === 0) return '';
+  if (floors.length === 1) return `${floors[0]} floor`;
+
+  const includesMezzanine = floors.includes('Mezzanine');
+  const numericFloors = floors.filter(f => f !== 'Mezzanine');
+  
+  if (numericFloors.length === 0) return 'Mezzanine floor';
+
+  const first = numericFloors[0];
+  const last = numericFloors[numericFloors.length - 1];
+
+  let display = `${first} to ${last} floor`;
+  if (includesMezzanine) {
+    display += ' (includes Mezzanine)';
+  }
+  
+  return display;
+};
+
 export default function BottomSheet({ pin, onClose }: BottomSheetProps) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -27,7 +50,6 @@ export default function BottomSheet({ pin, onClose }: BottomSheetProps) {
         ${isOpen ? 'translate-y-0' : 'translate-y-full'}
       `}
     >
-      {/* Overlay for closing when clicking outside */}
       <div 
         className={`fixed inset-0 bg-black/10 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'}`}
         onClick={() => {
@@ -37,7 +59,6 @@ export default function BottomSheet({ pin, onClose }: BottomSheetProps) {
       />
       
       <div className="relative bg-white rounded-t-[24px] shadow-2xl max-h-[80vh] overflow-y-auto pb-10">
-        {/* Drag Handle */}
         <div className="sticky top-0 bg-white pt-3 pb-2 flex justify-center z-10">
           <div className="w-12 h-1.5 bg-zinc-200 rounded-full" />
         </div>
@@ -55,9 +76,15 @@ export default function BottomSheet({ pin, onClose }: BottomSheetProps) {
               <h2 className="text-2xl font-bold text-zinc-900 leading-tight">
                 {pin.name}
               </h2>
-              <p className="text-sm text-zinc-500 font-medium">
-                {pin.building}
-              </p>
+              <div className="flex items-center gap-2 mt-1">
+                <p className="text-sm text-zinc-500 font-bold">
+                  {pin.building}
+                </p>
+                <span className="w-1 h-1 bg-zinc-300 rounded-full" />
+                <p className="text-sm text-zinc-500 font-medium">
+                  {formatFloors(pin.floors)}
+                </p>
+              </div>
             </div>
             <button 
               onClick={() => {
