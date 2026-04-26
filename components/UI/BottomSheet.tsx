@@ -56,7 +56,7 @@ export default function BottomSheet({ pin, onClose }: BottomSheetProps) {
         }}
       />
       
-      {/* The Sheet - max height limited to 60% to keep map visible */}
+      {/* The Sheet - max height limited to 65% to keep map visible */}
       <div className="relative bg-white border-t border-zinc-200 rounded-t-[32px] shadow-[0_-12px_64px_-12px_rgba(0,0,0,0.1)] max-h-[65vh] md:max-h-[50vh] overflow-y-auto pb-12 select-none">
         
         {/* Drag Handle */}
