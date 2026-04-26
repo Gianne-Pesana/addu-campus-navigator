@@ -27,11 +27,14 @@ export default function MapView({
         className="w-full h-full"
         attributionControl={false}
       >
-        {/* OpenStreetMap Standard Tiles - Dimmed for maximum visibility of pins */}
+        {/* Mapbox Streets v12 - Premium detail and high zoom support */}
         <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          maxZoom={19}
-          opacity={0.6}
+          url={`https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/{z}/{x}/{y}?access_token=${process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}`}
+          tileSize={512}
+          zoomOffset={-1}
+          maxZoom={22}
+          opacity={0.8}
+          attribution='© <a href="https://www.mapbox.com/about/maps/">Mapbox</a>'
         />
         
         <CampusBoundsController boundary={data.boundary} />

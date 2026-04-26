@@ -82,8 +82,10 @@ export default function PinLayer({
             eventHandlers={{
               click: () => {
                 onPinClick(pin);
-                map.setView(pin.coordinates, Math.max(map.getZoom(), 19), {
+                // Center and zoom in to resolve overlapping pins
+                map.setView(pin.coordinates, 20, {
                   animate: true,
+                  duration: 0.5
                 });
               },
             }}

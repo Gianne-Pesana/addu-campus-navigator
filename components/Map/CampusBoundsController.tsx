@@ -18,11 +18,9 @@ export default function CampusBoundsController({ boundary }: CampusBoundsControl
       // Initial fit - tight view on campus
       map.fitBounds(bounds, { padding: [10, 10], animate: false });
       
-      // Strict zoom limits for maximum reliability
-      // Setting minZoom high enough that campus is always visible
+      // Strict zoom limits
       map.setMinZoom(18);
-      // OSM standard tiles usually stop at 19
-      map.setMaxZoom(19);
+      map.setMaxZoom(22);
       
       // Boundary locking
       map.setMaxBounds(bounds);
