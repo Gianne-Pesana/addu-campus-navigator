@@ -1,9 +1,10 @@
 'use client';
 
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { Map, MapRef } from 'react-map-gl/mapbox';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import { CampusData, Category, Pin } from '@/types/campus';
-import CampusBoundsController from './CampusBoundsController';
 import PinLayer from './PinLayer';
+import { useCallback, useRef } from 'react';
 
 interface MapViewProps {
   data: CampusData;
@@ -18,39 +19,52 @@ export default function MapView({
   selectedPinId,
   onPinClick 
 }: MapViewProps) {
+  const mapRef = useRef<MapRef>(null);
+
+  // Strict Campus Boundaries
+  const maxBounds: [number, number, number, number] = [
+    125.61188108286865, 7.070791075762912, // South West [lng, lat]
+    125.61437821894305, 7.073515053389983  // North East [lng, lat]
+  ];
+
+  const handlePinClick = useCallback((pin: Pin) => {
+    onPinClick(pin);
+    if (mapRef.current) {
+      mapRef.current.flyTo({
+        center: [pin.coordinates[1], pin.coordinates[0]],
+        zoom: 20,
+        pitch: 45,
+        duration: 2000
+      });
+    }
+  }, [onPinClick]);
+
   return (
     <div className="w-full h-full relative overflow-hidden bg-[#f0f2f5]">
-      <MapContainer
-        center={[7.07215, 125.61312]}
-        zoom={19}
-        minZoom={18}
-        maxZoom={24}
-        zoomSnap={0.1}
-        zoomDelta={0.5}
-        zoomControl={false}
-        className="w-full h-full"
-        attributionControl={false}
+      <Map
+        ref={mapRef}
+        initialViewState={{
+          longitude: 125.61312,
+          latitude: 7.07215,
+          zoom: 18.5,
+          bearing: -50,
+          pitch: 40
+        }}
+        mapStyle="mapbox://styles/mapbox/streets-v12"
+        mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
+        maxBounds={maxBounds}
+        minZoom={17.5}
+        maxZoom={22}
+        reuseMaps
+        style={{ width: '100%', height: '100%' }}
       >
-        {/* Mapbox Streets v12 - With extreme zoom scaling enabled */}
-        <TileLayer
-          url={`https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/{z}/{x}/{y}?access_token=${process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}`}
-          tileSize={512}
-          zoomOffset={-1}
-          maxZoom={24}
-          maxNativeZoom={22}
-          opacity={0.8}
-          attribution='© <a href="https://www.mapbox.com/about/maps/">Mapbox</a>'
-        />
-        
-        <CampusBoundsController boundary={data.boundary} />
-        
         <PinLayer 
           pins={data.pins} 
           activeCategory={activeCategory} 
-          onPinClick={onPinClick}
+          onPinClick={handlePinClick}
           selectedPinId={selectedPinId}
         />
-      </MapContainer>
+      </Map>
     </div>
   );
 }

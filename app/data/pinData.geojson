@@ -1,0 +1,576 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "pin-0",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.613093,
+          7.071621
+        ]
+      },
+      "properties": {
+        "id": "pin-0",
+        "name": "Finster Restroom 2",
+        "category": [
+          "restroom"
+        ],
+        "description": "Clean and accessible university restroom facilities located in Finster Hall.",
+        "building": "Finster Hall",
+        "floors": [
+          "3rd",
+          "4th",
+          "5th",
+          "6th",
+          "7th"
+        ],
+        "tags": [],
+        "howToGetThere": "Go to the Finster Building"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-1",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.612713,
+          7.072133
+        ]
+      },
+      "properties": {
+        "id": "pin-1",
+        "name": "Finster Restroom 1",
+        "category": [
+          "restroom"
+        ],
+        "description": "Clean and accessible university restroom facilities located in Finster Hall.",
+        "building": "Finster Hall",
+        "floors": [
+          "3rd",
+          "4th",
+          "5th",
+          "6th",
+          "7th"
+        ],
+        "tags": [],
+        "howToGetThere": "Go to the Finster Building"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-2",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.61337,
+          7.071436
+        ]
+      },
+      "properties": {
+        "id": "pin-2",
+        "name": "CCFC Restroom",
+        "category": [
+          "restroom"
+        ],
+        "description": "Clean and accessible university restroom facilities located in CCFC.",
+        "building": "CCFC",
+        "floors": [
+          "1st",
+          "Mezzanine",
+          "2nd",
+          "3rd",
+          "4th",
+          "5th",
+          "6th",
+          "7th",
+          "8th",
+          "9th",
+          "10th",
+          "11th"
+        ],
+        "tags": [],
+        "howToGetThere": "Locate the CCFC and follow building signs."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-3",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.613402,
+          7.071784
+        ]
+      },
+      "properties": {
+        "id": "pin-3",
+        "name": "Jubilee Hall Restroom",
+        "category": [
+          "restroom"
+        ],
+        "description": "Clean and accessible university restroom facilities located in Jubilee Hall.",
+        "building": "Jubilee Hall",
+        "floors": [
+          "1st",
+          "2nd",
+          "3rd",
+          "4th"
+        ],
+        "tags": [],
+        "howToGetThere": "Locate the Jubilee Hall and follow building signs."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-4",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.613641,
+          7.071765
+        ]
+      },
+      "properties": {
+        "id": "pin-4",
+        "name": "Martin Hall Restroom",
+        "category": [
+          "restroom"
+        ],
+        "description": "Clean and accessible university restroom facilities located in Martin Hall.",
+        "building": "Martin Hall",
+        "floors": [
+          "1st",
+          "Mezzanine",
+          "2nd",
+          "3rd",
+          "4th",
+          "5th",
+          "6th",
+          "7th"
+        ],
+        "tags": [],
+        "howToGetThere": "Locate the Martin Hall and follow building signs."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-5",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.612692,
+          7.072197
+        ]
+      },
+      "properties": {
+        "id": "pin-5",
+        "name": "Canisius Restroom 1",
+        "category": [
+          "restroom"
+        ],
+        "description": "Clean and accessible university restroom facilities located in Canisius Building.",
+        "building": "Canisius Building",
+        "floors": [
+          "1st",
+          "2nd",
+          "3rd",
+          "4th"
+        ],
+        "tags": [],
+        "howToGetThere": "Locate the Canisius Building and follow building signs."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-6",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.613178,
+          7.072289
+        ]
+      },
+      "properties": {
+        "id": "pin-6",
+        "name": "Canisius Restroom 2",
+        "category": [
+          "restroom"
+        ],
+        "description": "Clean and accessible university restroom facilities located in Canisius Building.",
+        "building": "Canisius Building",
+        "floors": [
+          "1st",
+          "2nd",
+          "3rd",
+          "4th"
+        ],
+        "tags": [],
+        "howToGetThere": "Locate the Canisius Building and follow building signs."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-7",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.612588,
+          7.072596
+        ]
+      },
+      "properties": {
+        "id": "pin-7",
+        "name": "Wieman Restroom",
+        "category": [
+          "restroom"
+        ],
+        "description": "Clean and accessible university restroom facilities located in Wieman Hall.",
+        "building": "Wieman Hall",
+        "floors": [
+          "1st",
+          "2nd",
+          "3rd"
+        ],
+        "tags": [],
+        "howToGetThere": "Locate the Wieman Hall and follow building signs."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-8",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.612992,
+          7.072666
+        ]
+      },
+      "properties": {
+        "id": "pin-8",
+        "name": "All gender restroom",
+        "category": [
+          "restroom"
+        ],
+        "description": "Clean and accessible university restroom facilities located in Wieman Hall.",
+        "building": "Wieman Hall",
+        "floors": [
+          "1st"
+        ],
+        "tags": [],
+        "howToGetThere": "Locate the Wieman Hall and follow building signs."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-9",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.612601,
+          7.07202
+        ]
+      },
+      "properties": {
+        "id": "pin-9",
+        "name": "Finster Lounge 1",
+        "category": [
+          "study",
+          "hangout"
+        ],
+        "description": "A comfortable student lounge in Finster Hall designed for waiting between classes, studying, or casual socializing. Charging stations are available.",
+        "building": "Finster Hall",
+        "floors": [
+          "1st"
+        ],
+        "tags": [],
+        "howToGetThere": "Locate the Finster Hall and follow building signs."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-10",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.612849,
+          7.071897
+        ]
+      },
+      "properties": {
+        "id": "pin-10",
+        "name": "Finster Lounge 2",
+        "category": [
+          "study",
+          "hangout"
+        ],
+        "description": "A comfortable student lounge in Finster Hall designed for waiting between classes, studying, or casual socializing. Charging stations are available.",
+        "building": "Finster Hall",
+        "floors": [
+          "1st"
+        ],
+        "tags": [],
+        "howToGetThere": "Locate the Finster Hall and follow building signs."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-11",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.612863,
+          7.072449
+        ]
+      },
+      "properties": {
+        "id": "pin-11",
+        "name": "Gazeebo",
+        "category": [
+          "study",
+          "hangout"
+        ],
+        "description": "An iconic outdoor gazebo on the campus grounds, perfect for group discussions or quiet study in a natural environment.",
+        "building": "addu_grounds",
+        "floors": [
+          "1st"
+        ],
+        "tags": [],
+        "howToGetThere": "Locate the addu grounds and follow building signs."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-12",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.613075,
+          7.072456
+        ]
+      },
+      "properties": {
+        "id": "pin-12",
+        "name": "Gazeebo Food Stall",
+        "category": [
+          "food"
+        ],
+        "description": "A convenient outdoor stall serving snacks, refreshments, and desserts for students on the university grounds.",
+        "building": "addu_grounds",
+        "floors": [
+          "1st"
+        ],
+        "tags": [],
+        "howToGetThere": "Locate the addu grounds and follow building signs."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-13",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.613073,
+          7.072438
+        ]
+      },
+      "properties": {
+        "id": "pin-13",
+        "name": "Printing Service",
+        "category": [
+          "student_services"
+        ],
+        "description": "Dedicated university printing services offering document reproduction and academic support for students.",
+        "building": "addu_grounds",
+        "floors": [
+          "1st"
+        ],
+        "tags": [],
+        "howToGetThere": "Locate the addu grounds and follow building signs."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-14",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.612923,
+          7.072158
+        ]
+      },
+      "properties": {
+        "id": "pin-14",
+        "name": "Benches",
+        "category": [
+          "hangout"
+        ],
+        "description": "Relaxing outdoor benches located near the university field, providing a serene environment for rest between classes.",
+        "building": "addu_grounds",
+        "floors": [
+          "1st"
+        ],
+        "tags": [],
+        "howToGetThere": "Locate the addu grounds and follow building signs."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-15",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.613885,
+          7.071788
+        ]
+      },
+      "properties": {
+        "id": "pin-15",
+        "name": "Arrupe Hall",
+        "category": [
+          "study"
+        ],
+        "description": "A vibrant campus area known for its refreshing breeze and comfortable seating, ideal for both individual study and group meetings.",
+        "building": "Martin Hall",
+        "floors": [
+          "1st"
+        ],
+        "tags": [],
+        "howToGetThere": "right beside jacinto gate"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-16",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.613939,
+          7.07173
+        ]
+      },
+      "properties": {
+        "id": "pin-16",
+        "name": "Basketball court",
+        "category": [
+          "sports_and_recreation"
+        ],
+        "description": "The main university indoor athletic court located on the upper levels of Martin Hall, supporting sports and recreation activities.",
+        "building": "Martin Hall",
+        "floors": [
+          "4th"
+        ],
+        "tags": [],
+        "howToGetThere": "Locate the Martin Hall and follow building signs."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-17",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.613708,
+          7.07203
+        ]
+      },
+      "properties": {
+        "id": "pin-17",
+        "name": "Addu Fitness & Wellness Center",
+        "category": [
+          "sports_and_recreation"
+        ],
+        "description": "A modern fitness facility in Martin Hall equipped with gym equipment and space for physical wellness activities.",
+        "building": "Martin Hall",
+        "floors": [
+          "5th"
+        ],
+        "tags": [],
+        "howToGetThere": "Locate the Martin Hall and follow building signs."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-18",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.613495,
+          7.071178
+        ]
+      },
+      "properties": {
+        "id": "pin-18",
+        "name": "Miguel Pro Learning Commons",
+        "category": [
+          "library",
+          "study"
+        ],
+        "description": "The Miguel Pro Learning Commons offers a state-of-the-art, flexible study environment with dedicated zones for different learning styles.",
+        "building": "CCFC",
+        "floors": [
+          "2nd"
+        ],
+        "tags": [],
+        "howToGetThere": "Locate the CCFC and follow building signs."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-19",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.613224,
+          7.072647
+        ]
+      },
+      "properties": {
+        "id": "pin-19",
+        "name": "Fr. Mateo Gisbert, SJ Library",
+        "category": [
+          "library",
+          "study"
+        ],
+        "description": "The central university library providing extensive research collections, OPAC terminals, and quiet study areas across multiple levels.",
+        "building": "Gisbert Hall",
+        "floors": [
+          "2nd",
+          "3rd",
+          "4th",
+          "5th"
+        ],
+        "tags": [],
+        "howToGetThere": "Locate the Gisbert Hall and follow building signs."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-20",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.612759,
+          7.072592
+        ]
+      },
+      "properties": {
+        "id": "pin-20",
+        "name": "American Corner",
+        "category": [
+          "library",
+          "study"
+        ],
+        "description": "A specialized resource center fostering international cultural exchange and providing access to diverse academic databases.",
+        "building": "Wieman Hall",
+        "floors": [
+          "2nd"
+        ],
+        "tags": [],
+        "howToGetThere": "Locate the Wieman Hall and follow building signs."
+      }
+    }
+  ]
+}

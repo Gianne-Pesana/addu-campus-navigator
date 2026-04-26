@@ -6,6 +6,28 @@ import { MapView } from '@/components/Map';
 import FilterBar from '@/components/UI/FilterBar';
 import BottomSheet from '@/components/UI/BottomSheet';
 
+interface GeoJSONFeature {
+  id: string;
+  properties: {
+    id: string;
+    name: string;
+    category: string[];
+    description: string;
+    building: string;
+    floors: string[];
+    tags: string[];
+    howToGetThere: string;
+  };
+  geometry: {
+    type: "Point";
+    coordinates: [number, number];
+  };
+}
+
+interface GeoJSONData {
+  features: GeoJSONFeature[];
+}
+
 export default function MapPage() {
   const [data, setData] = useState<CampusData | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>('all');
@@ -15,8 +37,8 @@ export default function MapPage() {
   useEffect(() => {
     fetch('/data/pinData.geojson')
       .then(res => res.json())
-      .then((geoJson) => {
-        const pins: Pin[] = geoJson.features.map((feature: any) => ({
+      .then((geoJson: GeoJSONData) => {
+        const pins: Pin[] = geoJson.features.map((feature: GeoJSONFeature) => ({
           id: feature.properties.id,
           name: feature.properties.name,
           category: feature.properties.category,
