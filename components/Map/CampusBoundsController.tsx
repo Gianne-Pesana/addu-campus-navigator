@@ -15,15 +15,18 @@ export default function CampusBoundsController({ boundary }: CampusBoundsControl
     if (boundary && boundary.length > 0) {
       const bounds = L.latLngBounds(boundary);
       
-      // Set initial view
-      map.fitBounds(bounds, { padding: [20, 20] });
+      // Initial fit
+      map.fitBounds(bounds, { padding: [20, 20], animate: false });
       
-      // Restrict map panning
-      map.setMaxBounds(bounds.pad(0.1)); // Slight padding to allow some breathing room but keep it locked
-      
-      // Set zoom limits
+      // Stable zoom limits
       map.setMinZoom(17);
       map.setMaxZoom(20);
+      
+      // Boundary locking
+      map.setMaxBounds(bounds);
+      
+      // Ensure the map respects the bounds firmly
+      map.options.maxBoundsViscosity = 1.0;
     }
   }, [map, boundary]);
 

@@ -19,18 +19,19 @@ export default function MapView({
   onZoneClick 
 }: MapViewProps) {
   return (
-    <div className="w-full h-full relative">
+    <div className="w-full h-full relative overflow-hidden bg-[#f0f2f5]">
       <MapContainer
-        center={[7.072, 125.613]}
+        center={[7.07215, 125.61312]}
         zoom={18}
         zoomControl={false}
         className="w-full h-full"
         attributionControl={false}
       >
-        {/* Minimalist Map Tiles */}
+        {/* CARTO Voyager - Clean colored style, high reliability */}
         <TileLayer
-          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
           subdomains="abcd"
+          maxZoom={20}
         />
         
         <CampusBoundsController boundary={data.boundary} />
