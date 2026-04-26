@@ -38,6 +38,13 @@ export default function MapPage() {
         const sortedCategories = Array.from(extractedCategories).sort((a, b) => {
           if (a === 'all') return -1;
           if (b === 'all') return 1;
+          
+          // Custom priority: Library > Study > others
+          if (a === 'library') return -1;
+          if (b === 'library') return 1;
+          if (a === 'study') return -1;
+          if (b === 'study') return 1;
+          
           return a.localeCompare(b);
         });
 
