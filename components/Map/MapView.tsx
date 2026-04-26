@@ -30,11 +30,10 @@ export default function MapView({
   const handlePinClick = useCallback((pin: Pin) => {
     onPinClick(pin);
     if (mapRef.current) {
-      mapRef.current.flyTo({
+      // Simple centering without tilting or extreme zooming as requested
+      mapRef.current.easeTo({
         center: [pin.coordinates[1], pin.coordinates[0]],
-        zoom: 20,
-        pitch: 45,
-        duration: 2000
+        duration: 800
       });
     }
   }, [onPinClick]);
@@ -48,7 +47,7 @@ export default function MapView({
           latitude: 7.07215,
           zoom: 18.5,
           bearing: -50,
-          pitch: 40
+          pitch: 0 // No tilting for a cleaner professional top-down look
         }}
         mapStyle="mapbox://styles/mapbox/streets-v12"
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}

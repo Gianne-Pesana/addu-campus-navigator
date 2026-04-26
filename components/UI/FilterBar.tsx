@@ -57,7 +57,7 @@ export default function FilterBar({
         {showLeftArrow && (
           <button 
             onClick={() => scroll('left')}
-            className="absolute left-1 z-10 p-2 bg-zinc-900/90 backdrop-blur-md rounded-full shadow-lg border border-white/10 text-white hover:bg-zinc-800 transition-all hidden md:flex"
+            className="absolute left-1 z-10 p-2 bg-white/95 backdrop-blur-md rounded-full shadow-lg border border-zinc-200 text-zinc-600 hover:bg-zinc-50 transition-all hidden md:flex"
             aria-label="Scroll left"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -66,11 +66,11 @@ export default function FilterBar({
           </button>
         )}
 
-        {/* Main Filter Container - Dark Glassmorphism to match Mapbox Dark */}
+        {/* Main Filter Container - Light Professional Theme */}
         <div 
           ref={scrollRef}
           onScroll={checkScroll}
-          className="flex items-center gap-2 p-2 bg-zinc-900/80 backdrop-blur-xl rounded-2xl shadow-2xl overflow-x-auto border border-white/10 no-scrollbar select-none w-full"
+          className="flex items-center gap-2 p-2 bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl shadow-black/5 overflow-x-auto border border-white no-scrollbar select-none w-full"
         >
           {categories.map((category) => (
             <button
@@ -79,8 +79,8 @@ export default function FilterBar({
               className={`
                 whitespace-nowrap px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex-shrink-0
                 ${activeCategory === category 
-                  ? 'bg-white text-zinc-900 shadow-[0_0_20px_rgba(255,255,255,0.3)] scale-105' 
-                  : 'text-zinc-400 hover:text-white hover:bg-white/5'}
+                  ? 'bg-zinc-900 text-white shadow-lg' 
+                  : 'text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100/80'}
               `}
             >
               {formatLabel(category)}
@@ -92,7 +92,7 @@ export default function FilterBar({
         {showRightArrow && (
           <button 
             onClick={() => scroll('right')}
-            className="absolute right-1 z-10 p-2 bg-zinc-900/90 backdrop-blur-md rounded-full shadow-lg border border-white/10 text-white hover:bg-zinc-800 transition-all hidden md:flex"
+            className="absolute right-1 z-10 p-2 bg-white/95 backdrop-blur-md rounded-full shadow-lg border border-zinc-200 text-zinc-600 hover:bg-zinc-50 transition-all hidden md:flex"
             aria-label="Scroll right"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
