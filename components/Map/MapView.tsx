@@ -21,10 +21,10 @@ export default function MapView({
 }: MapViewProps) {
   const mapRef = useRef<MapRef>(null);
 
-  // Strict Campus Boundaries
+  // Strict Campus Boundaries - Slightly shrunk for better focus
   const maxBounds: [number, number, number, number] = [
-    125.61188108286865, 7.070791075762912, // South West [lng, lat]
-    125.61437821894305, 7.073515053389983  // North East [lng, lat]
+    125.61208108286865, 7.070991075762912, // South West [lng, lat]
+    125.61417821894305, 7.073315053389983  // North East [lng, lat]
   ];
 
   const handlePinClick = useCallback((pin: Pin) => {
