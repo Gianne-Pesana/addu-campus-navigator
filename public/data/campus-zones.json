@@ -1,0 +1,86 @@
+{
+  "zones": [
+    {
+      "id": "study-1",
+      "name": "Finster Library - 2nd Floor",
+      "category": "Study Spots",
+      "coordinates": [
+        [7.0725, 125.6130],
+        [7.0728, 125.6130],
+        [7.0728, 125.6135],
+        [7.0725, 125.6135]
+      ],
+      "building": "Finster Building",
+      "description": "Quiet study area with individual cubicles and high-speed Wi-Fi. Perfect for deep focus.",
+      "tags": ["Quiet", "Indoor", "Wi-Fi", "AC"],
+      "howToGetThere": "Enter Finster Building, take the elevator or stairs to the 2nd floor, turn left past the reception."
+    },
+    {
+      "id": "restroom-1",
+      "name": "Arrupe Hall CR - Ground Floor",
+      "category": "Restrooms (CR)",
+      "coordinates": [
+        [7.0718, 125.6138],
+        [7.0720, 125.6138],
+        [7.0720, 125.6140],
+        [7.0718, 125.6140]
+      ],
+      "building": "Arrupe Hall",
+      "description": "Well-maintained restrooms with handicap access. Usually clean and less crowded.",
+      "tags": ["Clean", "Accessible"],
+      "howToGetThere": "Located at the back of the ground floor, near the southern exit."
+    },
+    {
+      "id": "hangout-1",
+      "name": "Jubilee Hall Lounge",
+      "category": "Hangout Areas",
+      "coordinates": [
+        [7.0712, 125.6132],
+        [7.0715, 125.6132],
+        [7.0715, 125.6137],
+        [7.0712, 125.6137]
+      ],
+      "building": "Jubilee Hall",
+      "description": "Open-air lounge area where students gather between classes. Great for group discussions.",
+      "tags": ["Crowded", "Outdoor", "Vibrant"],
+      "howToGetThere": "Central area of Jubilee Hall, easily accessible from the main walkway."
+    },
+    {
+      "id": "food-1",
+      "name": "Martin Hall Cafeteria",
+      "category": "Food Areas",
+      "coordinates": [
+        [7.0722, 125.6122],
+        [7.0725, 125.6122],
+        [7.0725, 125.6127],
+        [7.0722, 125.6127]
+      ],
+      "building": "Martin Hall",
+      "description": "Main campus cafeteria serving a variety of meals and snacks. Student-friendly prices.",
+      "tags": ["Food", "Drinks", "Seating"],
+      "howToGetThere": "Located on the first floor of Martin Hall, facing the basketball courts."
+    },
+    {
+      "id": "office-1",
+      "name": "Registrar's Office",
+      "category": "Offices / Services",
+      "coordinates": [
+        [7.0730, 125.6125],
+        [7.0733, 125.6125],
+        [7.0733, 125.6129],
+        [7.0730, 125.6129]
+      ],
+      "building": "Finster Building",
+      "description": "Official office for student records, enrollment, and certifications.",
+      "tags": ["Service", "Official", "AC"],
+      "howToGetThere": "Ground floor of Finster Building, main entrance, right-hand side."
+    }
+  ],
+  "boundary": [
+    [7.0715528428473675, 125.61437821894305],
+    [7.073515053389983, 125.61292674674525],
+    [7.0727532895433995, 125.61188108286865],
+    [7.070791075762912, 125.61333255506639],
+    [7.0715528428473675, 125.61437821894305]
+  ]
+}
