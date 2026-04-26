@@ -28,8 +28,9 @@ export default function FilterBar({
   const checkScroll = () => {
     if (scrollRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      setShowLeftArrow(scrollLeft > 10);
-      setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 10);
+      // Use a small buffer (5px) for the scroll check
+      setShowLeftArrow(scrollLeft > 5);
+      setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 5);
     }
   };
 
@@ -39,9 +40,9 @@ export default function FilterBar({
     return () => window.removeEventListener('resize', checkScroll);
   }, [categories]);
 
-  const scroll = (direction: 'left' | 'right') => {
+  const handleScroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
-      const scrollAmount = 200;
+      const scrollAmount = 240; // Roughly 2.5 items
       scrollRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
@@ -53,20 +54,20 @@ export default function FilterBar({
     <div className="fixed top-6 left-1/2 -translate-x-1/2 z-[1000] w-[calc(100%-2rem)] max-w-4xl px-2">
       <div className="relative group flex items-center">
         
-        {/* Left Arrow */}
+        {/* Left Navigation Arrow */}
         {showLeftArrow && (
           <button 
-            onClick={() => scroll('left')}
-            className="absolute left-1 z-10 p-2 bg-white/95 backdrop-blur-md rounded-full shadow-lg border border-zinc-200 text-zinc-600 hover:bg-zinc-50 transition-all hidden md:flex"
-            aria-label="Scroll left"
+            onClick={() => handleScroll('left')}
+            className="absolute -left-2 md:-left-4 z-20 p-2 bg-white/95 backdrop-blur-md rounded-full shadow-lg border border-zinc-200 text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900 transition-all flex active:scale-90"
+            aria-label="Scroll categories left"
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
           </button>
         )}
 
-        {/* Main Filter Container - Light Professional Theme */}
+        {/* Main Filter Container - Maintains Drag/Scroll Support */}
         <div 
           ref={scrollRef}
           onScroll={checkScroll}
@@ -79,7 +80,7 @@ export default function FilterBar({
               className={`
                 whitespace-nowrap px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex-shrink-0
                 ${activeCategory === category 
-                  ? 'bg-zinc-900 text-white shadow-lg' 
+                  ? 'bg-zinc-900 text-white shadow-lg scale-105' 
                   : 'text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100/80'}
               `}
             >
@@ -88,18 +89,22 @@ export default function FilterBar({
           ))}
         </div>
 
-        {/* Right Arrow */}
+        {/* Right Navigation Arrow */}
         {showRightArrow && (
           <button 
-            onClick={() => scroll('right')}
-            className="absolute right-1 z-10 p-2 bg-white/95 backdrop-blur-md rounded-full shadow-lg border border-zinc-200 text-zinc-600 hover:bg-zinc-50 transition-all hidden md:flex"
-            aria-label="Scroll right"
+            onClick={() => handleScroll('right')}
+            className="absolute -right-2 md:-right-4 z-20 p-2 bg-white/95 backdrop-blur-md rounded-full shadow-lg border border-zinc-200 text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900 transition-all flex active:scale-90"
+            aria-label="Scroll categories right"
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
           </button>
         )}
+
+        {/* Dynamic Edge Fades */}
+        <div className={`absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white/80 to-transparent pointer-events-none rounded-l-2xl transition-opacity duration-300 ${showLeftArrow ? 'opacity-100' : 'opacity-0'}`} />
+        <div className={`absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white/80 to-transparent pointer-events-none rounded-r-2xl transition-opacity duration-300 ${showRightArrow ? 'opacity-100' : 'opacity-0'}`} />
       </div>
     </div>
   );
