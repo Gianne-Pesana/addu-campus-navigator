@@ -69,7 +69,7 @@ export default function BottomSheet({ pin, onClose }: BottomSheetProps) {
               <div className="flex flex-wrap gap-1 mb-2">
                 {pin.category.map(cat => (
                   <span key={cat} className="inline-block px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-zinc-100 text-zinc-500">
-                    {cat}
+                    {cat.replace(/_/g, ' ')}
                   </span>
                 ))}
               </div>
@@ -78,8 +78,9 @@ export default function BottomSheet({ pin, onClose }: BottomSheetProps) {
               </h2>
               <div className="flex items-center gap-2 mt-1">
                 <p className="text-sm text-zinc-500 font-bold">
-                  {pin.building}
+                  {pin.building.replace(/_/g, ' ')}
                 </p>
+
                 <span className="w-1 h-1 bg-zinc-300 rounded-full" />
                 <p className="text-sm text-zinc-500 font-medium">
                   {formatFloors(pin.floors)}

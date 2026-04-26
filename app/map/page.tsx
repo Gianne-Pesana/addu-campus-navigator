@@ -1,32 +1,21 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { CampusData, Category, Pin } from '@/types/campus';
+import { CampusData, Pin } from '@/types/campus';
 import { MapView } from '@/components/Map';
 import FilterBar from '@/components/UI/FilterBar';
 import BottomSheet from '@/components/UI/BottomSheet';
 
-const CATEGORIES: Category[] = [
-  'all',
-  'study',
-  'hangout',
-  'food',
-  'library',
-  'restroom',
-  'office'
-];
-
 export default function MapPage() {
   const [data, setData] = useState<CampusData | null>(null);
-  const [activeCategory, setActiveCategory] = useState<Category>('all');
+  const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [categories, setCategories] = useState<string[]>(['all']);
   const [selectedPin, setSelectedPin] = useState<Pin | null>(null);
 
   useEffect(() => {
-    // Fetch the standardized GeoJSON data
     fetch('/data/pinData.geojson')
       .then(res => res.json())
       .then((geoJson) => {
-        // Transform GeoJSON to internal CampusData format
         const pins: Pin[] = geoJson.features.map((feature: any) => ({
           id: feature.properties.id,
           name: feature.properties.name,
@@ -36,8 +25,21 @@ export default function MapPage() {
           floors: feature.properties.floors,
           tags: feature.properties.tags,
           howToGetThere: feature.properties.howToGetThere,
-          coordinates: [feature.geometry.coordinates[1], feature.geometry.coordinates[0]] // [lat, lng]
+          coordinates: [feature.geometry.coordinates[1], feature.geometry.coordinates[0]]
         }));
+
+        // Extract and sort unique categories from data
+        const extractedCategories = new Set<string>();
+        extractedCategories.add('all');
+        pins.forEach(pin => {
+          pin.category.forEach(cat => extractedCategories.add(cat));
+        });
+
+        const sortedCategories = Array.from(extractedCategories).sort((a, b) => {
+          if (a === 'all') return -1;
+          if (b === 'all') return 1;
+          return a.localeCompare(b);
+        });
 
         const boundary: [number, number][] = [
           [7.0715528428473675, 125.61437821894305],
@@ -47,6 +49,7 @@ export default function MapPage() {
           [7.0715528428473675, 125.61437821894305]
         ];
 
+        setCategories(sortedCategories);
         setData({ pins, boundary });
       })
       .catch(err => console.error('Failed to load pin data:', err));
@@ -69,7 +72,6 @@ export default function MapPage() {
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
-      {/* Brand Overlay */}
       <div className="fixed bottom-6 left-6 z-[1000] pointer-events-none hidden md:block">
         <h1 className="text-xl font-bold text-zinc-900/40 tracking-tight">
           Campus Navigator
@@ -77,11 +79,11 @@ export default function MapPage() {
       </div>
 
       <FilterBar 
-        categories={CATEGORIES} 
+        categories={categories} 
         activeCategory={activeCategory} 
         onCategoryChange={(cat) => {
           setActiveCategory(cat);
-          setSelectedPin(null); // Clear selection when category changes
+          setSelectedPin(null);
         }} 
       />
       
@@ -92,7 +94,6 @@ export default function MapPage() {
         onPinClick={handlePinClick}
       />
       
-      {/* Map Pin Detail View */}
       <BottomSheet 
         pin={selectedPin} 
         onClose={() => setSelectedPin(null)} 

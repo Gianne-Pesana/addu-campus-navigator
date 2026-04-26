@@ -12,12 +12,14 @@ interface PinLayerProps {
 }
 
 const CATEGORY_COLORS: Record<string, string> = {
-  study: '#4ade80',    // green
-  hangout: '#facc15',  // yellow
-  food: '#fb923c',     // orange
-  library: '#a855f7',  // purple
-  restroom: '#3b82f6', // blue
-  office: '#ef4444',   // red
+  study: '#4ade80',              // green
+  hangout: '#facc15',            // yellow
+  food: '#fb923c',               // orange
+  library: '#a855f7',            // purple
+  restroom: '#3b82f6',           // blue
+  office: '#ef4444',             // red
+  sports_and_recreation: '#f43f5e', // rose
+  student_services: '#06b6d4',   // cyan
 };
 
 const createPinIcon = (category: string, isSelected: boolean) => {

@@ -19,17 +19,15 @@
         ],
         "description": "Standardized university restroom facilities located in Finster Hall. Maintained for cleanliness and accessibility.",
         "building": "Finster Hall",
-        "tags": [
-          "Restroom"
-        ],
-        "howToGetThere": "Go to the Finster Building",
         "floors": [
           "3rd",
           "4th",
           "5th",
           "6th",
           "7th"
-        ]
+        ],
+        "tags": [],
+        "howToGetThere": "Go to the Finster Building"
       }
     },
     {
@@ -50,17 +48,15 @@
         ],
         "description": "Standardized university restroom facilities located in Finster Hall. Maintained for cleanliness and accessibility.",
         "building": "Finster Hall",
-        "tags": [
-          "Restroom"
-        ],
-        "howToGetThere": "Go to the Finster Building",
         "floors": [
           "3rd",
           "4th",
           "5th",
           "6th",
           "7th"
-        ]
+        ],
+        "tags": [],
+        "howToGetThere": "Go to the Finster Building"
       }
     },
     {
@@ -81,10 +77,6 @@
         ],
         "description": "Standardized university restroom facilities located in CCFC. Maintained for cleanliness and accessibility.",
         "building": "CCFC",
-        "tags": [
-          "Restroom"
-        ],
-        "howToGetThere": "",
         "floors": [
           "1st",
           "Mezzanine",
@@ -98,7 +90,9 @@
           "9th",
           "10th",
           "11th"
-        ]
+        ],
+        "tags": [],
+        "howToGetThere": ""
       }
     },
     {
@@ -119,16 +113,14 @@
         ],
         "description": "Standardized university restroom facilities located in Jubilee Hall. Maintained for cleanliness and accessibility.",
         "building": "Jubilee Hall",
-        "tags": [
-          "Restroom"
-        ],
-        "howToGetThere": "",
         "floors": [
           "1st",
           "2nd",
           "3rd",
           "4th"
-        ]
+        ],
+        "tags": [],
+        "howToGetThere": ""
       }
     },
     {
@@ -149,10 +141,6 @@
         ],
         "description": "Standardized university restroom facilities located in Martin Hall. Maintained for cleanliness and accessibility.",
         "building": "Martin Hall",
-        "tags": [
-          "Restroom"
-        ],
-        "howToGetThere": "",
         "floors": [
           "1st",
           "Mezzanine",
@@ -162,7 +150,9 @@
           "5th",
           "6th",
           "7th"
-        ]
+        ],
+        "tags": [],
+        "howToGetThere": ""
       }
     },
     {
@@ -183,16 +173,14 @@
         ],
         "description": "Standardized university restroom facilities located in Canisius Building. Maintained for cleanliness and accessibility.",
         "building": "Canisius Building",
-        "tags": [
-          "Restroom"
-        ],
-        "howToGetThere": "",
         "floors": [
           "1st",
           "2nd",
           "3rd",
           "4th"
-        ]
+        ],
+        "tags": [],
+        "howToGetThere": ""
       }
     },
     {
@@ -213,16 +201,14 @@
         ],
         "description": "Standardized university restroom facilities located in Canisius Building. Maintained for cleanliness and accessibility.",
         "building": "Canisius Building",
-        "tags": [
-          "Restroom"
-        ],
-        "howToGetThere": "",
         "floors": [
           "1st",
           "2nd",
           "3rd",
           "4th"
-        ]
+        ],
+        "tags": [],
+        "howToGetThere": ""
       }
     },
     {
@@ -243,15 +229,13 @@
         ],
         "description": "Standardized university restroom facilities located in Wieman Hall. Maintained for cleanliness and accessibility.",
         "building": "Wieman Hall",
-        "tags": [
-          "Restroom"
-        ],
-        "howToGetThere": "",
         "floors": [
           "1st",
           "2nd",
           "3rd"
-        ]
+        ],
+        "tags": [],
+        "howToGetThere": ""
       }
     },
     {
@@ -272,13 +256,11 @@
         ],
         "description": "Standardized university restroom facilities located in Wieman Hall. Maintained for cleanliness and accessibility.",
         "building": "Wieman Hall",
-        "tags": [
-          "Restroom"
-        ],
-        "howToGetThere": "",
         "floors": [
           "1st"
-        ]
+        ],
+        "tags": [],
+        "howToGetThere": ""
       }
     },
     {
@@ -300,14 +282,11 @@
         ],
         "description": "This area features chairs and tables suitable for studying, waiting between classes, or casual socializing. Charging stations are also available for student use.",
         "building": "Finster Hall",
-        "tags": [
-          "study",
-          "hangout"
-        ],
-        "howToGetThere": "",
         "floors": [
           "1st"
-        ]
+        ],
+        "tags": [],
+        "howToGetThere": ""
       }
     },
     {
@@ -329,14 +308,11 @@
         ],
         "description": "This area features chairs and tables suitable for studying, waiting between classes, or casual socializing. Charging stations are also available for student use.",
         "building": "Finster Hall",
-        "tags": [
-          "study",
-          "hangout"
-        ],
-        "howToGetThere": "",
         "floors": [
           "2nd"
-        ]
+        ],
+        "tags": [],
+        "howToGetThere": ""
       }
     },
     {
@@ -358,14 +334,11 @@
         ],
         "description": "An open-air study and rest area located on the campus grounds. Select sheds are equipped with charging ports, though Wi-Fi signal strength may vary.",
         "building": "addu_grounds",
-        "tags": [
-          "study",
-          "hangout"
-        ],
-        "howToGetThere": "",
         "floors": [
           "1st"
-        ]
+        ],
+        "tags": [],
+        "howToGetThere": ""
       }
     },
     {
@@ -386,11 +359,11 @@
         ],
         "description": "A convenient outdoor stall offering a variety of breads, ice cream, and other desserts for students on the go.",
         "building": "addu_grounds",
-        "tags": [],
-        "howToGetThere": "",
         "floors": [
           "1st"
-        ]
+        ],
+        "tags": [],
+        "howToGetThere": ""
       }
     },
     {
@@ -411,11 +384,11 @@
         ],
         "description": "On-campus printing and document services available for students and faculty.",
         "building": "addu_grounds",
-        "tags": [],
-        "howToGetThere": "",
         "floors": [
           "1st"
-        ]
+        ],
+        "tags": [],
+        "howToGetThere": ""
       }
     },
     {
@@ -436,11 +409,11 @@
         ],
         "description": "Outdoor seating areas designed for relaxation and enjoying the view of the open campus field.",
         "building": "addu_grounds",
-        "tags": [],
-        "howToGetThere": "",
         "floors": [
           "1st"
-        ]
+        ],
+        "tags": [],
+        "howToGetThere": ""
       }
     },
     {
@@ -461,11 +434,11 @@
         ],
         "description": "A refreshing study space featuring grass beds and a natural breeze. The area is equipped with tables and chairs for comfortable outdoor productivity.",
         "building": "Martin Hall",
-        "tags": [],
-        "howToGetThere": "right beside jacinto gate",
         "floors": [
           "1st"
-        ]
+        ],
+        "tags": [],
+        "howToGetThere": "right beside jacinto gate"
       }
     },
     {
@@ -486,13 +459,11 @@
         ],
         "description": "The primary indoor sports facility for basketball and other athletic activities, located on the upper levels of Martin Hall.",
         "building": "Martin Hall",
-        "tags": [
-          "Sports"
-        ],
-        "howToGetThere": "",
         "floors": [
           "4th"
-        ]
+        ],
+        "tags": [],
+        "howToGetThere": ""
       }
     },
     {
@@ -513,13 +484,11 @@
         ],
         "description": "A comprehensive university gym and wellness facility equipped for exercise and physical training.",
         "building": "Martin Hall",
-        "tags": [
-          "Gym, Exercise"
-        ],
-        "howToGetThere": "",
         "floors": [
           "5th"
-        ]
+        ],
+        "tags": [],
+        "howToGetThere": ""
       }
     },
     {
@@ -541,11 +510,11 @@
         ],
         "description": "The Miguel Pro Learning Commons (MPLC) provides a comfortable and flexible study environment designed to support collaborative and individual student work.",
         "building": "CCFC",
-        "tags": [],
-        "howToGetThere": "",
         "floors": [
           "2nd"
-        ]
+        ],
+        "tags": [],
+        "howToGetThere": ""
       }
     },
     {
@@ -567,16 +536,14 @@
         ],
         "description": "The primary university library serving undergraduate and graduate levels. It features extensive collections and dedicated study areas across multiple floors, equipped with OPAC terminals.",
         "building": "Gisbert Hall",
-        "tags": [
-          "study, library, reserach"
-        ],
-        "howToGetThere": "",
         "floors": [
           "2nd",
           "3rd",
           "4th",
           "5th"
-        ]
+        ],
+        "tags": [],
+        "howToGetThere": ""
       }
     },
     {
@@ -598,11 +565,11 @@
         ],
         "description": "A specialized learning and gathering space that promotes cultural exchange and virtual interaction, providing access to a wide range of academic resources.",
         "building": "Wieman Hall",
-        "tags": [],
-        "howToGetThere": "",
         "floors": [
           "2nd"
-        ]
+        ],
+        "tags": [],
+        "howToGetThere": ""
       }
     }
   ]
