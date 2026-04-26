@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
+import Link from 'next/link';
 
 interface FilterBarProps {
   categories: string[];
@@ -28,7 +29,6 @@ export default function FilterBar({
   const checkScroll = () => {
     if (scrollRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      // Use a small buffer (5px) for the scroll check
       setShowLeftArrow(scrollLeft > 5);
       setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 5);
     }
@@ -42,7 +42,7 @@ export default function FilterBar({
 
   const handleScroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
-      const scrollAmount = 240; // Roughly 2.5 items
+      const scrollAmount = 240;
       scrollRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
@@ -51,10 +51,23 @@ export default function FilterBar({
   };
 
   return (
-    <div className="fixed top-6 left-1/2 -translate-x-1/2 z-[1000] w-[calc(100%-2rem)] max-w-4xl px-2">
-      <div className="relative group flex items-center">
+    <div className="fixed top-6 left-1/2 -translate-x-1/2 z-[1000] w-[calc(100%-2rem)] max-w-6xl px-2 flex items-center gap-3">
+      
+      {/* Home Button */}
+      <Link 
+        href="/"
+        className="flex-shrink-0 p-3 bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl shadow-black/5 border border-white text-zinc-600 hover:text-zinc-950 transition-all active:scale-95"
+        aria-label="Back to home"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+      </Link>
+
+      {/* Categories Wrapper */}
+      <div className="relative group flex flex-1 items-center min-w-0">
         
-        {/* Left Navigation Arrow */}
         {showLeftArrow && (
           <button 
             onClick={() => handleScroll('left')}
@@ -67,7 +80,6 @@ export default function FilterBar({
           </button>
         )}
 
-        {/* Main Filter Container - Maintains Drag/Scroll Support */}
         <div 
           ref={scrollRef}
           onScroll={checkScroll}
@@ -89,7 +101,6 @@ export default function FilterBar({
           ))}
         </div>
 
-        {/* Right Navigation Arrow */}
         {showRightArrow && (
           <button 
             onClick={() => handleScroll('right')}
@@ -102,10 +113,22 @@ export default function FilterBar({
           </button>
         )}
 
-        {/* Dynamic Edge Fades */}
         <div className={`absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white/80 to-transparent pointer-events-none rounded-l-2xl transition-opacity duration-300 ${showLeftArrow ? 'opacity-100' : 'opacity-0'}`} />
         <div className={`absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white/80 to-transparent pointer-events-none rounded-r-2xl transition-opacity duration-300 ${showRightArrow ? 'opacity-100' : 'opacity-0'}`} />
       </div>
+
+      {/* About Button */}
+      <Link 
+        href="/about"
+        className="flex-shrink-0 p-3 bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl shadow-black/5 border border-white text-zinc-600 hover:text-zinc-950 transition-all active:scale-95"
+        aria-label="About project"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+      </Link>
     </div>
   );
 }
