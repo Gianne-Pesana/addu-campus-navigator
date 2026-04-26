@@ -20,7 +20,7 @@ export default function CampusBoundsController({ boundary }: CampusBoundsControl
       
       // Strict zoom limits
       map.setMinZoom(18);
-      map.setMaxZoom(22);
+      map.setMaxZoom(24);
       
       // Boundary locking
       map.setMaxBounds(bounds);

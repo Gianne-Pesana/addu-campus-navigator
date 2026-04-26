@@ -23,16 +23,21 @@ export default function MapView({
       <MapContainer
         center={[7.07215, 125.61312]}
         zoom={19}
+        minZoom={18}
+        maxZoom={24}
+        zoomSnap={0.1}
+        zoomDelta={0.5}
         zoomControl={false}
         className="w-full h-full"
         attributionControl={false}
       >
-        {/* Mapbox Streets v12 - Premium detail and high zoom support */}
+        {/* Mapbox Streets v12 - With extreme zoom scaling enabled */}
         <TileLayer
           url={`https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/{z}/{x}/{y}?access_token=${process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}`}
           tileSize={512}
           zoomOffset={-1}
-          maxZoom={22}
+          maxZoom={24}
+          maxNativeZoom={22}
           opacity={0.8}
           attribution='© <a href="https://www.mapbox.com/about/maps/">Mapbox</a>'
         />
