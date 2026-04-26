@@ -51,7 +51,7 @@ export default function MapView({
           longitude: 125.61312,
           latitude: 7.07215,
           zoom: 17.8,
-          bearing: -50,
+          bearing: 50,
           pitch: 0 
         }}
         mapStyle="mapbox://styles/mapbox/streets-v12"
