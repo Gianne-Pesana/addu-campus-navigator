@@ -18,7 +18,7 @@ export default function Home() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-indigo-500"></span>
             </span>
-            Spatial Discovery v1.0
+            Campus Information Resource
           </div>
 
           <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-6 leading-[0.95]">
@@ -29,7 +29,7 @@ export default function Home() {
           </h1>
           
           <p className="text-base md:text-lg text-zinc-400 max-w-lg mx-auto mb-10 leading-relaxed">
-            Experience the future of campus exploration. A data-driven spatial system designed for the next generation of students.
+            A comprehensive guide to university facilities. Locate study areas, restrooms, dining locations, and essential offices across the campus grounds.
           </p>
 
           <div className="flex flex-col items-center gap-8">
@@ -42,7 +42,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 rounded-2xl" />
               
               <span className="relative z-10 flex items-center gap-2.5">
-                Explore the Map
+                Open Campus Map
                 <svg className="w-5 h-5 transition-transform group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -53,7 +53,7 @@ export default function Home() {
             <div className="flex flex-col items-center">
               <div className="w-10 h-[1px] bg-gradient-to-r from-transparent via-zinc-700 to-transparent mb-5" />
               <span className="text-zinc-500 text-[9px] uppercase tracking-[0.4em] font-bold mb-1.5">
-                Created and Designed by
+                Project By
               </span>
               <span className="text-xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-zinc-500">
                 RIZAL GROUP 1
