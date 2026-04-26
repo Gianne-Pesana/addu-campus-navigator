@@ -22,16 +22,15 @@ export default function MapView({
     <div className="w-full h-full relative overflow-hidden bg-[#f0f2f5]">
       <MapContainer
         center={[7.07215, 125.61312]}
-        zoom={18}
+        zoom={19}
         zoomControl={false}
         className="w-full h-full"
         attributionControl={false}
       >
-        {/* CARTO Voyager - Clean colored style, high reliability */}
+        {/* OpenStreetMap Standard Tiles - High reliability, no rotation bugs */}
         <TileLayer
-          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-          subdomains="abcd"
-          maxZoom={20}
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          maxZoom={19}
         />
         
         <CampusBoundsController boundary={data.boundary} />

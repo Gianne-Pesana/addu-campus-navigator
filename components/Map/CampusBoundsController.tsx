@@ -15,12 +15,14 @@ export default function CampusBoundsController({ boundary }: CampusBoundsControl
     if (boundary && boundary.length > 0) {
       const bounds = L.latLngBounds(boundary);
       
-      // Initial fit
-      map.fitBounds(bounds, { padding: [20, 20], animate: false });
+      // Initial fit - tight view on campus
+      map.fitBounds(bounds, { padding: [10, 10], animate: false });
       
-      // Stable zoom limits
-      map.setMinZoom(17);
-      map.setMaxZoom(20);
+      // Strict zoom limits for maximum reliability
+      // Setting minZoom high enough that campus is always visible
+      map.setMinZoom(18);
+      // OSM standard tiles usually stop at 19
+      map.setMaxZoom(19);
       
       // Boundary locking
       map.setMaxBounds(bounds);
