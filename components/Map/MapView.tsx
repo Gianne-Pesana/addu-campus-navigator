@@ -1,22 +1,22 @@
 'use client';
 
 import { MapContainer, TileLayer } from 'react-leaflet';
-import { CampusData, Category, Zone } from '@/types/campus';
+import { CampusData, Category, Pin } from '@/types/campus';
 import CampusBoundsController from './CampusBoundsController';
-import ZoneLayer from './ZoneLayer';
+import PinLayer from './PinLayer';
 
 interface MapViewProps {
   data: CampusData;
   activeCategory: Category;
-  selectedZoneId?: string;
-  onZoneClick: (zone: Zone) => void;
+  selectedPinId?: string;
+  onPinClick: (pin: Pin) => void;
 }
 
 export default function MapView({ 
   data, 
   activeCategory, 
-  selectedZoneId,
-  onZoneClick 
+  selectedPinId,
+  onPinClick 
 }: MapViewProps) {
   return (
     <div className="w-full h-full relative overflow-hidden bg-[#f0f2f5]">
@@ -27,19 +27,20 @@ export default function MapView({
         className="w-full h-full"
         attributionControl={false}
       >
-        {/* OpenStreetMap Standard Tiles - High reliability, no rotation bugs */}
+        {/* OpenStreetMap Standard Tiles - Dimmed for maximum visibility of pins */}
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           maxZoom={19}
+          opacity={0.6}
         />
         
         <CampusBoundsController boundary={data.boundary} />
         
-        <ZoneLayer 
-          zones={data.zones} 
+        <PinLayer 
+          pins={data.pins} 
           activeCategory={activeCategory} 
-          onZoneClick={onZoneClick}
-          selectedZoneId={selectedZoneId}
+          onPinClick={onPinClick}
+          selectedPinId={selectedPinId}
         />
       </MapContainer>
     </div>

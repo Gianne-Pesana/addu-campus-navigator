@@ -1,86 +1,502 @@
 {
   "zones": [
     {
-      "id": "study-1",
-      "name": "Finster Library - 2nd Floor",
-      "category": "Study Spots",
+      "id": "common-areas-0",
+      "name": "Gazeebo",
+      "category": "Common Areas",
       "coordinates": [
-        [7.0725, 125.6130],
-        [7.0728, 125.6130],
-        [7.0728, 125.6135],
-        [7.0725, 125.6135]
+        [
+          7.072325,
+          125.612684
+        ],
+        [
+          7.072323,
+          125.613086
+        ],
+        [
+          7.072542,
+          125.613094
+        ],
+        [
+          7.072546,
+          125.61269
+        ],
+        [
+          7.072325,
+          125.612684
+        ]
       ],
-      "building": "Finster Building",
-      "description": "Quiet study area with individual cubicles and high-speed Wi-Fi. Perfect for deep focus.",
-      "tags": ["Quiet", "Indoor", "Wi-Fi", "AC"],
-      "howToGetThere": "Enter Finster Building, take the elevator or stairs to the 2nd floor, turn left past the reception."
+      "building": "Main Campus",
+      "description": "Description for Gazeebo. This is a common areas located in Main Campus.",
+      "tags": [
+        "Common",
+        "Campus"
+      ],
+      "howToGetThere": "Follow the main walkway towards Main Campus."
     },
     {
-      "id": "restroom-1",
-      "name": "Arrupe Hall CR - Ground Floor",
-      "category": "Restrooms (CR)",
+      "id": "common-areas-1",
+      "name": "Gazeebo Ext",
+      "category": "Common Areas",
       "coordinates": [
-        [7.0718, 125.6138],
-        [7.0720, 125.6138],
-        [7.0720, 125.6140],
-        [7.0718, 125.6140]
+        [
+          7.072684,
+          125.612849
+        ],
+        [
+          7.072673,
+          125.613016
+        ],
+        [
+          7.072781,
+          125.613019
+        ],
+        [
+          7.072839,
+          125.612851
+        ],
+        [
+          7.072684,
+          125.612849
+        ]
+      ],
+      "building": "Main Campus",
+      "description": "Description for Gazeebo Ext. This is a common areas located in Main Campus.",
+      "tags": [
+        "Common",
+        "Campus"
+      ],
+      "howToGetThere": "Follow the main walkway towards Main Campus."
+    },
+    {
+      "id": "common-areas-2",
+      "name": "Arrupe Hall",
+      "category": "Common Areas",
+      "coordinates": [
+        [
+          7.072127,
+          125.613456
+        ],
+        [
+          7.071489,
+          125.613958
+        ],
+        [
+          7.071635,
+          125.614155
+        ],
+        [
+          7.072273,
+          125.613665
+        ],
+        [
+          7.072127,
+          125.613456
+        ]
       ],
       "building": "Arrupe Hall",
-      "description": "Well-maintained restrooms with handicap access. Usually clean and less crowded.",
-      "tags": ["Clean", "Accessible"],
-      "howToGetThere": "Located at the back of the ground floor, near the southern exit."
+      "description": "Description for Arrupe Hall. This is a common areas located in Arrupe Hall.",
+      "tags": [
+        "Common",
+        "Campus"
+      ],
+      "howToGetThere": "Follow the main walkway towards Arrupe Hall."
     },
     {
-      "id": "hangout-1",
-      "name": "Jubilee Hall Lounge",
-      "category": "Hangout Areas",
+      "id": "common-areas-3",
+      "name": "Finster Hall 1st Lounge",
+      "category": "Common Areas",
       "coordinates": [
-        [7.0712, 125.6132],
-        [7.0715, 125.6132],
-        [7.0715, 125.6137],
-        [7.0712, 125.6137]
+        [
+          7.07204,
+          125.612566
+        ],
+        [
+          7.071976,
+          125.612618
+        ],
+        [
+          7.071991,
+          125.612635
+        ],
+        [
+          7.072055,
+          125.612583
+        ],
+        [
+          7.07204,
+          125.612566
+        ]
       ],
-      "building": "Jubilee Hall",
-      "description": "Open-air lounge area where students gather between classes. Great for group discussions.",
-      "tags": ["Crowded", "Outdoor", "Vibrant"],
-      "howToGetThere": "Central area of Jubilee Hall, easily accessible from the main walkway."
+      "building": "Finster Hall",
+      "description": "Description for Finster Hall 1st Lounge. This is a common areas located in Finster Hall.",
+      "tags": [
+        "Common",
+        "Campus"
+      ],
+      "howToGetThere": "Follow the main walkway towards Finster Hall."
     },
     {
-      "id": "food-1",
-      "name": "Martin Hall Cafeteria",
-      "category": "Food Areas",
+      "id": "common-areas-4",
+      "name": "Finster Hall 2nd Lounge",
+      "category": "Common Areas",
       "coordinates": [
-        [7.0722, 125.6122],
-        [7.0725, 125.6122],
-        [7.0725, 125.6127],
-        [7.0722, 125.6127]
+        [
+          7.071933,
+          125.612859
+        ],
+        [
+          7.0719,
+          125.612819
+        ],
+        [
+          7.071817,
+          125.612889
+        ],
+        [
+          7.071852,
+          125.612931
+        ],
+        [
+          7.071933,
+          125.612859
+        ]
       ],
-      "building": "Martin Hall",
-      "description": "Main campus cafeteria serving a variety of meals and snacks. Student-friendly prices.",
-      "tags": ["Food", "Drinks", "Seating"],
-      "howToGetThere": "Located on the first floor of Martin Hall, facing the basketball courts."
+      "building": "Finster Hall",
+      "description": "Description for Finster Hall 2nd Lounge. This is a common areas located in Finster Hall.",
+      "tags": [
+        "Common",
+        "Campus"
+      ],
+      "howToGetThere": "Follow the main walkway towards Finster Hall."
     },
     {
-      "id": "office-1",
-      "name": "Registrar's Office",
-      "category": "Offices / Services",
+      "id": "restrooms-(cr)-0",
+      "name": "Restrooms (CR) 1",
+      "category": "Restrooms (CR)",
       "coordinates": [
-        [7.0730, 125.6125],
-        [7.0733, 125.6125],
-        [7.0733, 125.6129],
-        [7.0730, 125.6129]
+        [
+          7.071639460477556,
+          125.6131388718236
+        ],
+        [
+          7.071675703457458,
+          125.61310765464111
+        ],
+        [
+          7.071605771169445,
+          125.61302906379638
+        ],
+        [
+          7.071604681168964,
+          125.61309850977273
+        ],
+        [
+          7.071639460477556,
+          125.6131388718236
+        ]
       ],
-      "building": "Finster Building",
-      "description": "Official office for student records, enrollment, and certifications.",
-      "tags": ["Service", "Official", "AC"],
-      "howToGetThere": "Ground floor of Finster Building, main entrance, right-hand side."
+      "building": "Main Campus",
+      "description": "Description for Restrooms (CR) 1. This is a restrooms (cr) located in Main Campus.",
+      "tags": [
+        "Restrooms",
+        "Campus"
+      ],
+      "howToGetThere": "Follow the main walkway towards Main Campus."
+    },
+    {
+      "id": "restrooms-(cr)-1",
+      "name": "Restrooms (CR) 2",
+      "category": "Restrooms (CR)",
+      "coordinates": [
+        [
+          7.071465656902419,
+          125.61334731186145
+        ],
+        [
+          7.071421294156508,
+          125.61338662574724
+        ],
+        [
+          7.071473421790145,
+          125.61344762266049
+        ],
+        [
+          7.071517784531068,
+          125.61340830877475
+        ],
+        [
+          7.071465656902419,
+          125.61334731186145
+        ]
+      ],
+      "building": "Main Campus",
+      "description": "Description for Restrooms (CR) 2. This is a restrooms (cr) located in Main Campus.",
+      "tags": [
+        "Restrooms",
+        "Campus"
+      ],
+      "howToGetThere": "Follow the main walkway towards Main Campus."
+    },
+    {
+      "id": "restrooms-(cr)-2",
+      "name": "Restrooms (CR) 3",
+      "category": "Restrooms (CR)",
+      "coordinates": [
+        [
+          7.072167182300589,
+          125.61270122919473
+        ],
+        [
+          7.072136084499803,
+          125.61266168473617
+        ],
+        [
+          7.0720723333151625,
+          125.61271645997954
+        ],
+        [
+          7.072102905306295,
+          125.61275474981596
+        ],
+        [
+          7.072167182300589,
+          125.61270122919473
+        ]
+      ],
+      "building": "Main Campus",
+      "description": "Description for Restrooms (CR) 3. This is a restrooms (cr) located in Main Campus.",
+      "tags": [
+        "Restrooms",
+        "Campus"
+      ],
+      "howToGetThere": "Follow the main walkway towards Main Campus."
+    },
+    {
+      "id": "restrooms-(cr)-3",
+      "name": "Restrooms (CR) 4",
+      "category": "Restrooms (CR)",
+      "coordinates": [
+        [
+          7.071653508951101,
+          125.6136406390143
+        ],
+        [
+          7.071716975090908,
+          125.61372141662571
+        ],
+        [
+          7.071808112514518,
+          125.61364183257882
+        ],
+        [
+          7.071745729327475,
+          125.61356363891565
+        ],
+        [
+          7.071653508951101,
+          125.6136406390143
+        ]
+      ],
+      "building": "Main Campus",
+      "description": "Description for Restrooms (CR) 4. This is a restrooms (cr) located in Main Campus.",
+      "tags": [
+        "Restrooms",
+        "Campus"
+      ],
+      "howToGetThere": "Follow the main walkway towards Main Campus."
+    },
+    {
+      "id": "restrooms-(cr)-4",
+      "name": "Restrooms (CR) 5",
+      "category": "Restrooms (CR)",
+      "coordinates": [
+        [
+          7.072178153145373,
+          125.612676705164
+        ],
+        [
+          7.072177159469248,
+          125.61271842241632
+        ],
+        [
+          7.072198201936573,
+          125.6127174897253
+        ],
+        [
+          7.0722010387637795,
+          125.61267461787111
+        ],
+        [
+          7.072178153145373,
+          125.612676705164
+        ]
+      ],
+      "building": "Main Campus",
+      "description": "Description for Restrooms (CR) 5. This is a restrooms (cr) located in Main Campus.",
+      "tags": [
+        "Restrooms",
+        "Campus"
+      ],
+      "howToGetThere": "Follow the main walkway towards Main Campus."
+    },
+    {
+      "id": "restrooms-(cr)-5",
+      "name": "Restrooms (CR) 6",
+      "category": "Restrooms (CR)",
+      "coordinates": [
+        [
+          7.072607182227173,
+          125.61256649488865
+        ],
+        [
+          7.072576194720185,
+          125.61256421929443
+        ],
+        [
+          7.072575059668793,
+          125.61259906328496
+        ],
+        [
+          7.072609707701403,
+          125.61259912034359
+        ],
+        [
+          7.072607182227173,
+          125.61256649488865
+        ]
+      ],
+      "building": "Main Campus",
+      "description": "Description for Restrooms (CR) 6. This is a restrooms (cr) located in Main Campus.",
+      "tags": [
+        "Restrooms",
+        "Campus"
+      ],
+      "howToGetThere": "Follow the main walkway towards Main Campus."
+    },
+    {
+      "id": "restrooms-(cr)-6",
+      "name": "Restrooms (CR) 7",
+      "category": "Restrooms (CR)",
+      "coordinates": [
+        [
+          7.07176727200121,
+          125.61346828167319
+        ],
+        [
+          7.071734389803538,
+          125.61342853050229
+        ],
+        [
+          7.071704233335296,
+          125.61345571115498
+        ],
+        [
+          7.071733541301157,
+          125.61349862978068
+        ],
+        [
+          7.07176727200121,
+          125.61346828167319
+        ]
+      ],
+      "building": "Main Campus",
+      "description": "Description for Restrooms (CR) 7. This is a restrooms (cr) located in Main Campus.",
+      "tags": [
+        "Restrooms",
+        "Campus"
+      ],
+      "howToGetThere": "Follow the main walkway towards Main Campus."
+    },
+    {
+      "id": "libraries-0",
+      "name": "Miguel Pro Learning Commons",
+      "category": "Libraries",
+      "coordinates": [
+        [
+          7.071406,
+          125.613492
+        ],
+        [
+          7.071221,
+          125.613279
+        ],
+        [
+          7.070977,
+          125.613488
+        ],
+        [
+          7.071162,
+          125.613702
+        ],
+        [
+          7.071406,
+          125.613492
+        ]
+      ],
+      "building": "Main Campus",
+      "description": "Description for Miguel Pro Learning Commons. This is a libraries located in Main Campus.",
+      "tags": [
+        "Libraries",
+        "Campus"
+      ],
+      "howToGetThere": "Follow the main walkway towards Main Campus."
+    },
+    {
+      "id": "libraries-1",
+      "name": "Fr. Mateo Gisbert, SJ Library",
+      "category": "Libraries",
+      "coordinates": [
+        [
+          7.072721,
+          125.613048
+        ],
+        [
+          7.072575,
+          125.613055
+        ],
+        [
+          7.072568,
+          125.613331
+        ],
+        [
+          7.072718,
+          125.613336
+        ],
+        [
+          7.072721,
+          125.613048
+        ]
+      ],
+      "building": "Main Campus",
+      "description": "Description for Fr. Mateo Gisbert, SJ Library. This is a libraries located in Main Campus.",
+      "tags": [
+        "Libraries",
+        "Campus"
+      ],
+      "howToGetThere": "Follow the main walkway towards Main Campus."
     }
   ],
   "boundary": [
-    [7.0715528428473675, 125.61437821894305],
-    [7.073515053389983, 125.61292674674525],
-    [7.0727532895433995, 125.61188108286865],
-    [7.070791075762912, 125.61333255506639],
-    [7.0715528428473675, 125.61437821894305]
+    [
+      7.0715528428473675,
+      125.61437821894305
+    ],
+    [
+      7.073515053389983,
+      125.61292674674525
+    ],
+    [
+      7.0727532895433995,
+      125.61188108286865
+    ],
+    [
+      7.070791075762912,
+      125.61333255506639
+    ],
+    [
+      7.0715528428473675,
+      125.61437821894305
+    ]
   ]
 }

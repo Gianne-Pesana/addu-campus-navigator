@@ -8,6 +8,16 @@ interface FilterBarProps {
   onCategoryChange: (category: Category) => void;
 }
 
+const CATEGORY_LABELS: Record<string, string> = {
+  all: 'All',
+  study: 'Study Spots',
+  hangout: 'Common Areas',
+  food: 'Food Areas',
+  library: 'Libraries',
+  restroom: 'Restrooms',
+  office: 'Offices',
+};
+
 export default function FilterBar({ 
   categories, 
   activeCategory, 
@@ -21,13 +31,13 @@ export default function FilterBar({
             key={category}
             onClick={() => onCategoryChange(category)}
             className={`
-              whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition-all
+              whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-bold transition-all
               ${activeCategory === category 
-                ? 'bg-zinc-900 text-white shadow-md' 
-                : 'hover:bg-zinc-100 text-zinc-600'}
+                ? 'bg-zinc-900 text-white shadow-lg scale-105' 
+                : 'hover:bg-zinc-100 text-zinc-500 hover:text-zinc-800'}
             `}
           >
-            {category}
+            {CATEGORY_LABELS[category] || category}
           </button>
         ))}
       </div>

@@ -1,24 +1,24 @@
 'use client';
 
-import { Zone } from '@/types/campus';
+import { Pin } from '@/types/campus';
 import { useEffect, useState } from 'react';
 
 interface BottomSheetProps {
-  zone: Zone | null;
+  pin: Pin | null;
   onClose: () => void;
 }
 
-export default function BottomSheet({ zone, onClose }: BottomSheetProps) {
+export default function BottomSheet({ pin, onClose }: BottomSheetProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setIsOpen(!!zone);
+      setIsOpen(!!pin);
     }, 50);
     return () => clearTimeout(timeout);
-  }, [zone]);
+  }, [pin]);
 
-  if (!zone) return null;
+  if (!pin) return null;
 
   return (
     <div 
@@ -45,14 +45,18 @@ export default function BottomSheet({ zone, onClose }: BottomSheetProps) {
         <div className="px-6 py-4">
           <div className="flex justify-between items-start mb-2">
             <div>
-              <span className="inline-block px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-zinc-100 text-zinc-500 mb-2">
-                {zone.category}
-              </span>
+              <div className="flex flex-wrap gap-1 mb-2">
+                {pin.category.map(cat => (
+                  <span key={cat} className="inline-block px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-zinc-100 text-zinc-500">
+                    {cat}
+                  </span>
+                ))}
+              </div>
               <h2 className="text-2xl font-bold text-zinc-900 leading-tight">
-                {zone.name}
+                {pin.name}
               </h2>
               <p className="text-sm text-zinc-500 font-medium">
-                {zone.building}
+                {pin.building}
               </p>
             </div>
             <button 
@@ -72,14 +76,14 @@ export default function BottomSheet({ zone, onClose }: BottomSheetProps) {
             <section>
               <h3 className="text-sm font-semibold text-zinc-900 mb-2">About this spot</h3>
               <p className="text-zinc-600 leading-relaxed">
-                {zone.description}
+                {pin.description}
               </p>
             </section>
 
             <section>
               <h3 className="text-sm font-semibold text-zinc-900 mb-2">Features</h3>
               <div className="flex flex-wrap gap-2">
-                {zone.tags.map(tag => (
+                {pin.tags.map(tag => (
                   <span key={tag} className="px-3 py-1 bg-zinc-50 border border-zinc-100 rounded-full text-xs font-medium text-zinc-600">
                     {tag}
                   </span>
@@ -87,18 +91,20 @@ export default function BottomSheet({ zone, onClose }: BottomSheetProps) {
               </div>
             </section>
 
-            <section className="bg-zinc-50 p-4 rounded-xl border border-zinc-100">
-              <h3 className="text-sm font-semibold text-zinc-900 mb-2 flex items-center gap-2">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                How to get there
-              </h3>
-              <p className="text-sm text-zinc-600 leading-relaxed">
-                {zone.howToGetThere}
-              </p>
-            </section>
+            {pin.howToGetThere && (
+              <section className="bg-zinc-50 p-4 rounded-xl border border-zinc-100">
+                <h3 className="text-sm font-semibold text-zinc-900 mb-2 flex items-center gap-2">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  How to get there
+                </h3>
+                <p className="text-sm text-zinc-600 leading-relaxed">
+                  {pin.howToGetThere}
+                </p>
+              </section>
+            )}
           </div>
         </div>
       </div>

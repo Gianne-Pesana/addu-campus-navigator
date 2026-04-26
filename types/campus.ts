@@ -1,17 +1,17 @@
-export type Category = 'Study Spots' | 'Restrooms (CR)' | 'Hangout Areas' | 'Food Areas' | 'Offices / Services';
+export type Category = 'study' | 'hangout' | 'food' | 'library' | 'restroom' | 'office' | 'all';
 
-export interface Zone {
+export interface Pin {
   id: string;
   name: string;
-  category: Category;
-  coordinates: [number, number][]; // [lat, lng]
-  building: string;
+  category: Category[]; // Mandatory array
   description: string;
-  tags: string[];
-  howToGetThere: string;
+  building: string;
+  tags: string[]; // Mandatory array
+  howToGetThere?: string;
+  coordinates: [number, number]; // [lat, lng]
 }
 
 export interface CampusData {
-  zones: Zone[];
+  pins: Pin[];
   boundary: [number, number][]; // [lat, lng]
 }

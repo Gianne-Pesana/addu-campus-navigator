@@ -1,0 +1,497 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "pin-0",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.613093,
+          7.071621
+        ]
+      },
+      "properties": {
+        "id": "pin-0",
+        "name": "Finster Restroom 2",
+        "category": [
+          "restroom"
+        ],
+        "description": "3rd-7th floor",
+        "building": "Finster Hall",
+        "tags": [
+          "Restroom"
+        ],
+        "howToGetThere": "Go to the Finster Building"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-1",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.612713,
+          7.072133
+        ]
+      },
+      "properties": {
+        "id": "pin-1",
+        "name": "Finster Restroom 1",
+        "category": [
+          "restroom"
+        ],
+        "description": "3rd-7th floor",
+        "building": "Finster Hall",
+        "tags": [
+          "Restroom"
+        ],
+        "howToGetThere": "Go to the Finster Building"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-2",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.61337,
+          7.071436
+        ]
+      },
+      "properties": {
+        "id": "pin-2",
+        "name": "CCFC Restroom",
+        "category": [
+          "restroom"
+        ],
+        "description": "1st-11th floor",
+        "building": "CCFC",
+        "tags": [
+          "Restroom"
+        ],
+        "howToGetThere": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-3",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.613402,
+          7.071784
+        ]
+      },
+      "properties": {
+        "id": "pin-3",
+        "name": "Jubilee Hall Restroom",
+        "category": [
+          "restroom"
+        ],
+        "description": "1st-N floor",
+        "building": "Jubilee Hall",
+        "tags": [
+          "Restroom"
+        ],
+        "howToGetThere": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-4",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.613641,
+          7.071765
+        ]
+      },
+      "properties": {
+        "id": "pin-4",
+        "name": "Martin Hall Restroom",
+        "category": [
+          "restroom"
+        ],
+        "description": "1st-7th floor",
+        "building": "Martin Hall",
+        "tags": [
+          "Restroom"
+        ],
+        "howToGetThere": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-5",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.612692,
+          7.072197
+        ]
+      },
+      "properties": {
+        "id": "pin-5",
+        "name": "Canisius Restroom 1",
+        "category": [
+          "restroom"
+        ],
+        "description": "1st-Nth floor",
+        "building": "Canisius Building",
+        "tags": [
+          "Restroom"
+        ],
+        "howToGetThere": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-6",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.613178,
+          7.072289
+        ]
+      },
+      "properties": {
+        "id": "pin-6",
+        "name": "Canisius Restroom 2",
+        "category": [
+          "restroom"
+        ],
+        "description": "1st-Nth floor",
+        "building": "Canisius Building",
+        "tags": [
+          "Restroom"
+        ],
+        "howToGetThere": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-7",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.612588,
+          7.072596
+        ]
+      },
+      "properties": {
+        "id": "pin-7",
+        "name": "Wieman Restroom",
+        "category": [
+          "restroom"
+        ],
+        "description": "1st-Nth floor",
+        "building": "Wieman Hall",
+        "tags": [
+          "Restroom"
+        ],
+        "howToGetThere": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-8",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.612992,
+          7.072666
+        ]
+      },
+      "properties": {
+        "id": "pin-8",
+        "name": "All gender restroom",
+        "category": [
+          "restroom"
+        ],
+        "description": "1st floor",
+        "building": "Wieman Hall",
+        "tags": [
+          "Restroom"
+        ],
+        "howToGetThere": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-9",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.612601,
+          7.07202
+        ]
+      },
+      "properties": {
+        "id": "pin-9",
+        "name": "Finster Lounge 1",
+        "category": [
+          "study"
+        ],
+        "description": "Have chairs and tables when you are waiting for your class, studying, or just hanging out. Charging spots is also available.",
+        "building": "Finster Hall",
+        "tags": [
+          "[study, hangout]"
+        ],
+        "howToGetThere": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-10",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.612849,
+          7.071897
+        ]
+      },
+      "properties": {
+        "id": "pin-10",
+        "name": "Finster Lounge 2",
+        "category": [
+          "study"
+        ],
+        "description": "Have chairs and tables when you are waiting for your class, studying, or just hanging out. Charging spots is also available.",
+        "building": "Finster Hall",
+        "tags": [
+          "[study, hangout]"
+        ],
+        "howToGetThere": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-11",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.612863,
+          7.072449
+        ]
+      },
+      "properties": {
+        "id": "pin-11",
+        "name": "Gazeebo",
+        "category": [
+          "study"
+        ],
+        "description": "Open area, some shed have chargins spots, wifi can be slow",
+        "building": "addu_grounds",
+        "tags": [
+          "[study, hangout]"
+        ],
+        "howToGetThere": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-12",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.613075,
+          7.072456
+        ]
+      },
+      "properties": {
+        "id": "pin-12",
+        "name": "Gazeebo Food Stall",
+        "category": [
+          "food"
+        ],
+        "description": "Bread, Ice Cream, Dessert",
+        "building": "addu_grounds",
+        "tags": [],
+        "howToGetThere": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-13",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.613073,
+          7.072438
+        ]
+      },
+      "properties": {
+        "id": "pin-13",
+        "name": "Printing Service",
+        "category": [
+          "student_services"
+        ],
+        "description": "",
+        "building": "addu_grounds",
+        "tags": [],
+        "howToGetThere": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-14",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.612923,
+          7.072158
+        ]
+      },
+      "properties": {
+        "id": "pin-14",
+        "name": "Benches",
+        "category": [
+          "hangout"
+        ],
+        "description": "Sit and relax with the open field",
+        "building": "addu_grounds",
+        "tags": [],
+        "howToGetThere": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-15",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.613885,
+          7.071788
+        ]
+      },
+      "properties": {
+        "id": "pin-15",
+        "name": "Arrupe Hall",
+        "category": [
+          "study"
+        ],
+        "description": "1st floor, Grass Beds, Refreshing Breeze, has tables and chairs",
+        "building": "Martin Hall",
+        "tags": [],
+        "howToGetThere": "right beside jacinto gate"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-16",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.613939,
+          7.07173
+        ]
+      },
+      "properties": {
+        "id": "pin-16",
+        "name": "Basketball court",
+        "category": [
+          "sports_and_recreation"
+        ],
+        "description": "4th floor",
+        "building": "Martin Hall",
+        "tags": [
+          "Sports"
+        ],
+        "howToGetThere": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-17",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.613708,
+          7.07203
+        ]
+      },
+      "properties": {
+        "id": "pin-17",
+        "name": "Addu Fitness & Wellness Center",
+        "category": [
+          "sports_and_recreation"
+        ],
+        "description": "5th floor. Gym, exercise",
+        "building": "Martin Hall",
+        "tags": [
+          "Gym, Exercise"
+        ],
+        "howToGetThere": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-18",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.613495,
+          7.071178
+        ]
+      },
+      "properties": {
+        "id": "pin-18",
+        "name": "Miguel Pro Learning Commons",
+        "category": [
+          "study"
+        ],
+        "description": "The Miguel Library Learning Commons (MPLC)  also known as Students’ Study Center is located on the 2nd floor of the Community Center of the First Companions. The Learning Commons offers a comfortable and flexible learning space in the university.",
+        "building": "CCFC",
+        "tags": [],
+        "howToGetThere": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-19",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.613224,
+          7.072647
+        ]
+      },
+      "properties": {
+        "id": "pin-19",
+        "name": "Fr. Mateo Gisbert, SJ Library",
+        "category": [
+          "study"
+        ],
+        "description": "The Fr. Mateo Gisbert, SJ Library is located at the Gisbert Building, beginning from the 2nd floor up to the 5th floor. It serves students and faculty in the Undergraduate and Graduate levels. Each floor is provided with Online Public Access Catalog (OPAC) terminals.",
+        "building": "Gisbert Hall",
+        "tags": [
+          "study, library, reserach"
+        ],
+        "howToGetThere": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pin-20",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.612759,
+          7.072592
+        ]
+      },
+      "properties": {
+        "id": "pin-20",
+        "name": "American Corner",
+        "category": [
+          "study"
+        ],
+        "description": "2nd floor. American Spaces are open-access learning and gathering places worldwide that promote in-person and virtual interaction among local audiences and the United States. More than 600 American Spaces are located in universities, shopping malls, libraries, and other public places and on embassy compounds in more than 140 countries. ",
+        "building": "Wieman Hall",
+        "tags": [],
+        "howToGetThere": ""
+      }
+    }
+  ]
+}
