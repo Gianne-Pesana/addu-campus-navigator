@@ -223,7 +223,7 @@ export default function LocationEditor({ feature, onClose, onSave }: LocationEdi
                 <div>
                   <input 
                     type="file" 
-                    accept="image/*" 
+                    accept="image/*,.heic,.heif,.HEIC,.HEIF" 
                     className="hidden" 
                     ref={fileInputRef}
                     onChange={handleImageUpload}

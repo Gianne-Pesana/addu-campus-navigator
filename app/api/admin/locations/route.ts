@@ -24,13 +24,10 @@ export async function POST(request: NextRequest) {
     
     // Check if updating existing or adding new
     const existingIndex = data.features.findIndex(f => f.id === newFeature.id);
+    
     if (existingIndex !== -1) {
-      // Allow specific updates to photos if they are provided, else keep old ones
-      if (rawFeature.properties?.photos && rawFeature.properties.photos.length > 0 && rawFeature.properties.photos[0] !== 'n/a') {
-        newFeature.properties.photos = rawFeature.properties.photos;
-      } else {
-        newFeature.properties.photos = data.features[existingIndex].properties.photos;
-      }
+      // Trust the properties sent from the client, including the photos array.
+      // This ensures that if a photo was removed in the UI, it's removed in the data.
       data.features[existingIndex] = newFeature;
     } else {
       data.features.push(newFeature);
