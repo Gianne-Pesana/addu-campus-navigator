@@ -8,6 +8,7 @@ export interface Pin {
   building: string;
   floors: string[];
   tags: string[];
+  photos: (string | { url: string; alt: string })[];
   howToGetThere?: string;
   coordinates: [number, number]; // [lat, lng]
 }

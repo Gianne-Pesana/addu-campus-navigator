@@ -17,6 +17,7 @@ interface GeoJSONFeature {
     building: string;
     floors: string[];
     tags: string[];
+    photos: (string | { url: string; alt: string })[];
     howToGetThere: string;
   };
   geometry: {
@@ -48,6 +49,7 @@ export default function MapPage() {
           building: feature.properties.building,
           floors: feature.properties.floors,
           tags: feature.properties.tags,
+          photos: feature.properties.photos || ["n/a"],
           howToGetThere: feature.properties.howToGetThere,
           coordinates: [feature.geometry.coordinates[1], feature.geometry.coordinates[0]]
         }));

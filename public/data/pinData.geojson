@@ -27,6 +27,7 @@
           "7th"
         ],
         "tags": [],
+        "photos": ["n/a"],
         "howToGetThere": "Go to the Finster Building"
       }
     },
@@ -56,6 +57,7 @@
           "7th"
         ],
         "tags": [],
+        "photos": ["n/a"],
         "howToGetThere": "Go to the Finster Building"
       }
     },
@@ -92,6 +94,7 @@
           "11th"
         ],
         "tags": [],
+        "photos": ["n/a"],
         "howToGetThere": ""
       }
     },
@@ -120,6 +123,7 @@
           "4th"
         ],
         "tags": [],
+        "photos": ["n/a"],
         "howToGetThere": ""
       }
     },
@@ -152,6 +156,7 @@
           "7th"
         ],
         "tags": [],
+        "photos": ["n/a"],
         "howToGetThere": ""
       }
     },
@@ -180,6 +185,7 @@
           "4th"
         ],
         "tags": [],
+        "photos": ["n/a"],
         "howToGetThere": ""
       }
     },
@@ -208,6 +214,7 @@
           "4th"
         ],
         "tags": [],
+        "photos": ["n/a"],
         "howToGetThere": ""
       }
     },
@@ -235,6 +242,7 @@
           "3rd"
         ],
         "tags": [],
+        "photos": ["n/a"],
         "howToGetThere": ""
       }
     },
@@ -260,6 +268,7 @@
           "1st"
         ],
         "tags": [],
+        "photos": ["n/a"],
         "howToGetThere": ""
       }
     },
@@ -286,6 +295,7 @@
           "1st"
         ],
         "tags": [],
+        "photos": ["n/a"],
         "howToGetThere": ""
       }
     },
@@ -312,6 +322,7 @@
           "2nd"
         ],
         "tags": [],
+        "photos": ["n/a"],
         "howToGetThere": ""
       }
     },
@@ -338,6 +349,16 @@
           "1st"
         ],
         "tags": [],
+        "photos": [
+          {
+            "url": "/images/addu_grounds/gazeebo-1.jpg",
+            "alt": "Gazeebo seating area"
+          },
+          {
+            "url": "/images/addu_grounds/gazeebo-2.jpg",
+            "alt": "Gazeebo seating area with charging ports"
+          }
+        ],
         "howToGetThere": ""
       }
     },
@@ -363,6 +384,7 @@
           "1st"
         ],
         "tags": [],
+        "photos": ["n/a"],
         "howToGetThere": ""
       }
     },
@@ -388,6 +410,7 @@
           "1st"
         ],
         "tags": [],
+        "photos": ["n/a"],
         "howToGetThere": ""
       }
     },
@@ -413,6 +436,7 @@
           "1st"
         ],
         "tags": [],
+        "photos": ["n/a"],
         "howToGetThere": ""
       }
     },
@@ -438,6 +462,7 @@
           "1st"
         ],
         "tags": [],
+        "photos": ["n/a"],
         "howToGetThere": "right beside jacinto gate"
       }
     },
@@ -463,6 +488,7 @@
           "4th"
         ],
         "tags": [],
+        "photos": ["n/a"],
         "howToGetThere": ""
       }
     },
@@ -488,6 +514,7 @@
           "5th"
         ],
         "tags": [],
+        "photos": ["n/a"],
         "howToGetThere": ""
       }
     },
@@ -514,6 +541,7 @@
           "2nd"
         ],
         "tags": [],
+        "photos": ["n/a"],
         "howToGetThere": ""
       }
     },
@@ -543,6 +571,7 @@
           "5th"
         ],
         "tags": [],
+        "photos": ["n/a"],
         "howToGetThere": ""
       }
     },
@@ -569,6 +598,7 @@
           "2nd"
         ],
         "tags": [],
+        "photos": ["n/a"],
         "howToGetThere": ""
       }
     }
