@@ -30,13 +30,12 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body 
-        className="min-h-full flex flex-col bg-background text-foreground transition-colors duration-300"
+        className="min-h-full flex flex-col bg-background text-foreground"
       >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
-          disableTransitionOnChange
         >
           {children}
         </ThemeProvider>

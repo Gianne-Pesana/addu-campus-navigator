@@ -3,7 +3,7 @@ import { ThemeToggle } from "@/components/UI/ThemeToggle";
 
 export default function Home() {
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden bg-landing-bg transition-colors duration-500">
+    <div className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden bg-landing-bg">
       {/* Theme Toggle Positioned Top Right */}
       <div className="absolute top-6 right-6 z-50">
         <ThemeToggle />

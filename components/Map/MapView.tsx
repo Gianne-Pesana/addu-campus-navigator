@@ -44,7 +44,7 @@ export default function MapView({
   }, [onPinClick]);
 
   return (
-    <div className="w-full h-full relative overflow-hidden bg-background transition-colors duration-300">
+    <div className="w-full h-full relative overflow-hidden bg-background">
       <Map
         ref={mapRef}
         initialViewState={{

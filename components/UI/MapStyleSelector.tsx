@@ -9,10 +9,10 @@ export interface MapStyleOption {
 }
 
 export const MAP_STYLES: MapStyleOption[] = [
+  { id: 'custom-light', label: 'Light', url: 'mapbox://styles/gpesana/cmohc84g1001f01rech0p3ceu' },
+  { id: 'custom-dark', label: 'Dark', url: 'mapbox://styles/gpesana/cmohc4mc7007n01r40ewxeawu' },
   { id: 'streets', label: 'Streets', url: 'mapbox://styles/mapbox/streets-v12' },
   { id: 'outdoors', label: 'Outdoors', url: 'mapbox://styles/mapbox/outdoors-v12' },
-  { id: 'light', label: 'Light', url: 'mapbox://styles/mapbox/light-v11' },
-  { id: 'dark', label: 'Dark', url: 'mapbox://styles/mapbox/dark-v11' },
   { id: 'satellite', label: 'Satellite', url: 'mapbox://styles/mapbox/satellite-v9' },
   { id: 'satellite-streets', label: 'Hybrid', url: 'mapbox://styles/mapbox/satellite-streets-v12' },
 ];

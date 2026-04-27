@@ -6,6 +6,7 @@ import { MapView } from '@/components/Map';
 import FilterBar from '@/components/UI/FilterBar';
 import BottomSheet from '@/components/UI/BottomSheet';
 import MapStyleSelector from '@/components/UI/MapStyleSelector';
+import { useTheme } from 'next-themes';
 
 interface GeoJSONFeature {
   id: string;
@@ -35,7 +36,23 @@ export default function MapPage() {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [categories, setCategories] = useState<string[]>(['all']);
   const [selectedPin, setSelectedPin] = useState<Pin | null>(null);
-  const [mapStyle, setMapStyle] = useState('mapbox://styles/mapbox/streets-v12');
+  
+  const { theme, resolvedTheme } = useTheme();
+  
+  const lightStyle = 'mapbox://styles/gpesana/cmohc84g1001f01rech0p3ceu';
+  const darkStyle = 'mapbox://styles/gpesana/cmohc4mc7007n01r40ewxeawu';
+
+  const [mapStyle, setMapStyle] = useState(lightStyle);
+
+  // Sync map style with theme changes
+  useEffect(() => {
+    const currentTheme = resolvedTheme || theme;
+    if (currentTheme === 'dark') {
+      setMapStyle(darkStyle);
+    } else {
+      setMapStyle(lightStyle);
+    }
+  }, [theme, resolvedTheme]);
 
   useEffect(() => {
     fetch('/data/pinData.geojson')
@@ -100,7 +117,7 @@ export default function MapPage() {
   }
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-background text-foreground transition-colors duration-300">
+    <div className="relative w-full h-screen overflow-hidden bg-background text-foreground">
       <div className="fixed bottom-6 left-6 z-[1000] pointer-events-none hidden md:block">
         <h1 className="text-xl font-bold text-foreground/40 tracking-tight">
           Campus Navigator
