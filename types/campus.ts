@@ -1,9 +1,9 @@
-export type Category = string; // Using string for dynamic categories, standardizing 'all'
+export type Category = string;
 
 export interface Pin {
   id: string;
   name: string;
-  category: string[]; // Standardized lowercase keys (e.g. 'sports_and_recreation')
+  category: string[];
   description: string;
   building: string;
   floors: string[];
@@ -15,5 +15,31 @@ export interface Pin {
 
 export interface CampusData {
   pins: Pin[];
-  boundary: [number, number][]; // [lat, lng]
+  boundary: [number, number][];
+}
+
+// GeoJSON Types for raw data management
+export interface GeoJSONFeature {
+  type: "Feature";
+  id: string;
+  geometry: {
+    type: "Point";
+    coordinates: [number, number]; // [lng, lat]
+  };
+  properties: {
+    id: string;
+    name: string;
+    category: string[];
+    description: string;
+    building: string;
+    floors: string[];
+    tags: string[];
+    photos: (string | { url: string; alt: string })[];
+    howToGetThere: string;
+  };
+}
+
+export interface GeoJSONData {
+  type: "FeatureCollection";
+  features: GeoJSONFeature[];
 }

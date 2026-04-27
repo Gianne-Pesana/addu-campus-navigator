@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyAuth } from '@/lib/auth';
 import { readGeoJSON } from '@/lib/geojson';
+import { GeoJSONFeature } from '@/types/campus';
 import sharp from 'sharp';
 import fs from 'fs/promises';
 import path from 'path';
@@ -21,7 +22,7 @@ export async function POST(request: NextRequest) {
     }
 
     const data = await readGeoJSON();
-    const feature = data.features.find(f => f.id === locationId);
+    const feature = data.features.find((f: GeoJSONFeature) => f.id === locationId);
 
     if (!feature) {
       return NextResponse.json({ error: 'Location not found' }, { status: 404 });
@@ -54,18 +55,18 @@ export async function POST(request: NextRequest) {
 
     // Get buffer
     const arrayBuffer = await image.arrayBuffer();
-    let buffer = Buffer.from(arrayBuffer);
+    let buffer: Buffer | ArrayBuffer = arrayBuffer;
 
     // Convert HEIC if needed
     const isHeic = image.name.toLowerCase().endsWith('.heic') || image.name.toLowerCase().endsWith('.heif');
     if (isHeic) {
       try {
         const outputBuffer = await convert({
-          buffer: buffer,
+          buffer: arrayBuffer, // Pass original ArrayBuffer
           format: 'JPEG',
           quality: 1
         });
-        buffer = Buffer.from(outputBuffer);
+        buffer = outputBuffer; // outputBuffer is ArrayBuffer
       } catch (err) {
         console.error('HEIC Conversion failed:', err);
         return NextResponse.json({ error: 'Failed to convert HEIC image' }, { status: 500 });
@@ -73,7 +74,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Standardize and compress with sharp
-    await sharp(buffer)
+    // Sharp accepts Buffer, Uint8Array, etc.
+    await sharp(Buffer.from(buffer))
       .rotate() 
       .resize({ 
         width: 1600, 
@@ -87,8 +89,7 @@ export async function POST(request: NextRequest) {
       })
       .toFile(filePath);
 
-    // Return the URL ONLY - Don't update GeoJSON here yet
-    // This allows the user to 'Cancel' the modal without orphaning data
+    // Return the URL ONLY
     const publicPath = `/images/${buildingSlug}/${fileName}`;
     return NextResponse.json({ success: true, photoUrl: publicPath });
 

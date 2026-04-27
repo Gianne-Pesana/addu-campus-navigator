@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyAuth } from '@/lib/auth';
 import { readGeoJSON, writeGeoJSON, standardizeFeature } from '@/lib/geojson';
+import { GeoJSONFeature } from '@/types/campus';
 
 export async function GET(request: NextRequest) {
   if (!(await verifyAuth())) {
@@ -23,7 +24,7 @@ export async function POST(request: NextRequest) {
     const data = await readGeoJSON();
     
     // Check if updating existing or adding new
-    const existingIndex = data.features.findIndex(f => f.id === newFeature.id);
+    const existingIndex = data.features.findIndex((f: GeoJSONFeature) => f.id === newFeature.id);
     
     if (existingIndex !== -1) {
       // Trust the properties sent from the client, including the photos array.
@@ -55,7 +56,7 @@ export async function DELETE(request: NextRequest) {
 
     const data = await readGeoJSON();
     const initialLength = data.features.length;
-    data.features = data.features.filter(f => f.id !== id);
+    data.features = data.features.filter((f: GeoJSONFeature) => f.id !== id);
 
     if (data.features.length === initialLength) {
       return NextResponse.json({ error: 'Location not found' }, { status: 404 });
