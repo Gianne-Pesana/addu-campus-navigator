@@ -27,7 +27,7 @@ export default function Home() {
             Campus Information Resource
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-6 leading-[0.95]">
+          <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-6 leading-tight py-2">
             <span className="block text-landing-text-primary transition-colors">Campus</span>
             <span className="block bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 dark:from-indigo-400 dark:via-purple-400 dark:to-blue-400">
               Navigator

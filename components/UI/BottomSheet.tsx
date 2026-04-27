@@ -2,7 +2,7 @@
 
 import { Pin } from '@/types/campus';
 import { useEffect, useState, useRef } from 'react';
-import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface BottomSheetProps {
   pin: Pin | null;
@@ -50,14 +50,17 @@ const Lightbox = ({
       window.removeEventListener('keydown', handleEsc);
       document.body.style.overflow = 'auto';
     };
-  }, [onClose, photos, initialIndex]);
+  }, [onClose]);
 
   const next = () => setCurrentIndex((prev) => (prev + 1) % photos.length);
   const prev = () => setCurrentIndex((prev) => (prev - 1 + photos.length) % photos.length);
 
   return (
-    <div 
-      className="fixed inset-0 z-[2000] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center animate-in fade-in duration-300"
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[2000] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center"
       onClick={onClose}
     >
       <button 
@@ -104,7 +107,7 @@ const Lightbox = ({
         <p className="text-white/90 text-sm font-medium">{photos[currentIndex].alt}</p>
         <p className="text-white/40 text-xs">{currentIndex + 1} / {photos.length}</p>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -144,7 +147,7 @@ const PhotoSection = ({
         <div className="flex overflow-x-auto no-scrollbar gap-3 pb-2">
           {validPhotos.map((photo, index) => (
             <div 
-              key={index} 
+              key={`photo-${index}`} 
               onClick={() => onPhotoClick(index)}
               className="relative shrink-0 rounded-xl overflow-hidden bg-foreground/5 border border-panel-border w-48 h-36 cursor-pointer hover:ring-2 hover:ring-indigo-500/50 transition-all active:scale-[0.98]"
             >
@@ -163,16 +166,8 @@ const PhotoSection = ({
 };
 
 export default function BottomSheet({ pin, onClose }: BottomSheetProps) {
-  const [isOpen, setIsOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setIsOpen(!!pin);
-    }, 50);
-    return () => clearTimeout(timeout);
-  }, [pin]);
 
   // Reset scroll when pin changes
   useEffect(() => {
@@ -181,9 +176,7 @@ export default function BottomSheet({ pin, onClose }: BottomSheetProps) {
     }
   }, [pin]);
 
-  if (!pin) return null;
-
-  const validPhotos = pin.photos
+  const validPhotos = pin?.photos
     .map(p => {
       if (typeof p === 'string') {
         if (p === 'n/a') return null;
@@ -191,120 +184,130 @@ export default function BottomSheet({ pin, onClose }: BottomSheetProps) {
       }
       return p;
     })
-    .filter((p): p is { url: string; alt: string } => p !== null);
+    .filter((p): p is { url: string; alt: string } => p !== null) || [];
 
   return (
     <>
-      <div 
-        className={`
-          fixed bottom-0 left-0 right-0 z-[1001] transition-transform duration-500 cubic-bezier(0.32, 0.72, 0, 1)
-          ${isOpen ? 'translate-y-0' : 'translate-y-full'}
-        `}
-      >
-        <div 
-          className={`fixed inset-0 bg-background/20 dark:bg-black/40 backdrop-blur-[1px] transition-opacity duration-500 ${isOpen ? 'opacity-100' : 'opacity-0'}`}
-          onClick={() => {
-            setIsOpen(false);
-            setTimeout(onClose, 500);
-          }}
-        />
-        
-        <div 
-          ref={scrollRef}
-          className="relative bg-background border-t border-panel-border rounded-t-[32px] shadow-[0_-12px_64px_-12px_rgba(0,0,0,0.1)] dark:shadow-[0_-12px_64px_-12px_rgba(0,0,0,0.5)] max-h-[65vh] md:max-h-[50vh] overflow-y-auto pb-12 select-none transition-colors duration-300"
-        >
-          
-          {/* Drag Handle */}
-          <div className="sticky top-0 bg-background pt-4 pb-3 flex justify-center z-10">
-            <div className="w-12 h-1 bg-foreground/10 rounded-full" />
-          </div>
+      <AnimatePresence>
+        {pin && (
+          <div key="bottom-sheet-container" className="fixed inset-0 z-[1001] flex flex-col justify-end">
+            {/* Backdrop */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="fixed inset-0 bg-background/20 dark:bg-black/40 backdrop-blur-[1px]"
+              onClick={onClose}
+            />
 
-          <div className="px-6 md:px-10 py-2">
-            <header className="flex justify-between items-start mb-8">
-              <div className="space-y-2">
-                <div className="flex flex-wrap gap-2">
-                  {pin.category.map(cat => (
-                    <span key={cat} className="inline-block px-2 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider bg-foreground/5 text-foreground/50 border border-panel-border">
-                      {cat.replace(/_/g, ' ')}
-                    </span>
-                  ))}
-                </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight leading-tight">
-                  {pin.name}
-                </h2>
-                <div className="flex items-center gap-2 pt-1 text-foreground/50">
-                  <span className="text-xs font-semibold uppercase tracking-wider">{pin.building.replace(/_/g, ' ')}</span>
-                  <div className="w-1 h-1 rounded-full bg-foreground/20" />
-                  <span className="text-xs font-medium uppercase tracking-wider">{formatFloors(pin.floors)}</span>
+            {/* Sheet */}
+            <motion.div 
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{ 
+                type: "spring", 
+                damping: 38, 
+                stiffness: 500, 
+                mass: 0.5
+              }}
+              ref={scrollRef}
+              className="relative bg-background border-t border-panel-border rounded-t-[32px] shadow-[0_-12px_64px_-12px_rgba(0,0,0,0.1)] dark:shadow-[0_-12px_64px_-12px_rgba(0,0,0,0.5)] max-h-[65vh] md:max-h-[50vh] overflow-y-auto pb-12 select-none"
+            >
+              {/* Drag Handle */}
+              <div className="sticky top-0 bg-background pt-4 pb-3 flex justify-center z-10">
+                <div className="w-12 h-1 bg-foreground/10 rounded-full" />
+              </div>
+
+              <div className="px-6 md:px-10 py-2">
+                <header className="flex justify-between items-start mb-8">
+                  <div className="space-y-2">
+                    <div className="flex flex-wrap gap-2">
+                      {pin.category.map((cat, idx) => (
+                        <span key={`cat-${cat}-${idx}`} className="inline-block px-2 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider bg-foreground/5 text-foreground/50 border border-panel-border">
+                          {cat.replace(/_/g, ' ')}
+                        </span>
+                      ))}
+                    </div>
+                    <h2 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight leading-tight">
+                      {pin.name}
+                    </h2>
+                    <div className="flex items-center gap-2 pt-1 text-foreground/50">
+                      <span className="text-xs font-semibold uppercase tracking-wider">{pin.building.replace(/_/g, ' ')}</span>
+                      <div className="w-1 h-1 rounded-full bg-foreground/20" />
+                      <span className="text-xs font-medium uppercase tracking-wider">{formatFloors(pin.floors)}</span>
+                    </div>
+                  </div>
+                  
+                  <button 
+                    onClick={onClose}
+                    className="p-2 bg-foreground/5 rounded-xl text-foreground/40 hover:text-foreground transition-colors active:scale-90"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M18 6L6 18M6 6l12 12" />
+                    </svg>
+                  </button>
+                </header>
+
+                <div className="space-y-8">
+                  <section>
+                    <h3 className="text-[11px] font-bold text-foreground/40 uppercase tracking-widest mb-3">About this location</h3>
+                    <p className="text-foreground/80 leading-relaxed text-base font-medium bg-foreground/5 p-5 rounded-2xl border border-panel-border">
+                      {pin.description}
+                    </p>
+                  </section>
+
+                  {pin.howToGetThere && (
+                    <section>
+                      <h3 className="text-[11px] font-bold text-foreground/40 uppercase tracking-widest mb-3">How to get here</h3>
+                      <div className="flex gap-4 items-start p-5 rounded-2xl bg-indigo-500/5 border border-indigo-500/10">
+                        <div className="mt-0.5 p-1.5 bg-indigo-600 rounded-lg text-white">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                          </svg>
+                        </div>
+                        <p className="text-sm text-foreground/80 leading-relaxed font-medium">
+                          {pin.howToGetThere}
+                        </p>
+                      </div>
+                    </section>
+                  )}
+
+                  <section>
+                    <h3 className="text-[11px] font-bold text-foreground/40 uppercase tracking-widest mb-3">Features & Tags</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {pin.tags.map((tag, idx) => (
+                        <span key={`tag-${tag}-${idx}`} className="px-3 py-1.5 bg-background border border-panel-border rounded-lg text-[11px] font-semibold text-foreground/70 shadow-sm">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </section>
+
+                  {/* Photos */}
+                  <PhotoSection 
+                    photos={pin.photos} 
+                    onPhotoClick={(index) => setLightboxIndex(index)}
+                  />
                 </div>
               </div>
-              
-              <button 
-                onClick={() => {
-                  setIsOpen(false);
-                  setTimeout(onClose, 500);
-                }}
-                className="p-2 bg-foreground/5 rounded-xl text-foreground/40 hover:text-foreground transition-colors active:scale-90"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18 6L6 18M6 6l12 12" />
-                </svg>
-              </button>
-            </header>
-
-            <div className="space-y-8">
-              <section>
-                <h3 className="text-[11px] font-bold text-foreground/40 uppercase tracking-widest mb-3">About this location</h3>
-                <p className="text-foreground/80 leading-relaxed text-base font-medium bg-foreground/5 p-5 rounded-2xl border border-panel-border">
-                  {pin.description}
-                </p>
-              </section>
-
-              {pin.howToGetThere && (
-                <section>
-                  <h3 className="text-[11px] font-bold text-foreground/40 uppercase tracking-widest mb-3">How to get here</h3>
-                  <div className="flex gap-4 items-start p-5 rounded-2xl bg-indigo-500/5 border border-indigo-500/10">
-                    <div className="mt-0.5 p-1.5 bg-indigo-600 rounded-lg text-white">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                        <circle cx="12" cy="10" r="3"></circle>
-                      </svg>
-                    </div>
-                    <p className="text-sm text-foreground/80 leading-relaxed font-medium">
-                      {pin.howToGetThere}
-                    </p>
-                  </div>
-                </section>
-              )}
-
-              <section>
-                <h3 className="text-[11px] font-bold text-foreground/40 uppercase tracking-widest mb-3">Features & Tags</h3>
-                <div className="flex flex-wrap gap-2">
-                  {pin.tags.map(tag => (
-                    <span key={tag} className="px-3 py-1.5 bg-background border border-panel-border rounded-lg text-[11px] font-semibold text-foreground/70 shadow-sm">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </section>
-
-              {/* Photos (LAST SECTION ONLY) */}
-              <PhotoSection 
-                photos={pin.photos} 
-                onPhotoClick={(index) => setLightboxIndex(index)}
-              />
-            </div>
+            </motion.div>
           </div>
-        </div>
-      </div>
+        )}
+      </AnimatePresence>
 
-      {lightboxIndex !== null && validPhotos.length > 0 && (
-        <Lightbox 
-          photos={validPhotos} 
-          initialIndex={lightboxIndex} 
-          onClose={() => setLightboxIndex(null)} 
-        />
-      )}
+      <AnimatePresence>
+        {lightboxIndex !== null && validPhotos.length > 0 && (
+          <Lightbox 
+            key="lightbox-component"
+            photos={validPhotos} 
+            initialIndex={lightboxIndex} 
+            onClose={() => setLightboxIndex(null)} 
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 }

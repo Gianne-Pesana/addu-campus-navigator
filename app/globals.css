@@ -85,7 +85,6 @@ html, body, #__next, [data-nextjs-scroll-focus-boundary] {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
 }
 

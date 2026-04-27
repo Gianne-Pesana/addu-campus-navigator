@@ -3,7 +3,7 @@ import { ThemeToggle } from "@/components/UI/ThemeToggle";
 
 export default function AboutPage() {
   return (
-    <div className="relative flex flex-col items-center min-h-screen overflow-x-hidden bg-background">
+    <div className="relative flex flex-col items-center min-h-screen overflow-y-auto bg-background">
       {/* Theme Toggle Positioned Top Right */}
       <div className="fixed top-6 right-6 z-50">
         <ThemeToggle />
