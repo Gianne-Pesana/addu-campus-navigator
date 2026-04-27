@@ -90,19 +90,19 @@ export default function MapPage() {
 
   if (!data) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-zinc-50">
+      <div className="flex items-center justify-center min-h-screen bg-background transition-colors duration-300">
         <div className="text-center">
-          <div className="w-12 h-12 border-4 border-zinc-200 border-t-zinc-800 rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-zinc-500 font-medium">Initializing Map...</p>
+          <div className="w-12 h-12 border-4 border-foreground/20 border-t-foreground rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-foreground/60 font-medium">Initializing Map...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full h-screen overflow-hidden bg-background text-foreground transition-colors duration-300">
       <div className="fixed bottom-6 left-6 z-[1000] pointer-events-none hidden md:block">
-        <h1 className="text-xl font-bold text-zinc-900/40 tracking-tight">
+        <h1 className="text-xl font-bold text-foreground/40 tracking-tight">
           Campus Navigator
         </h1>
       </div>

@@ -29,7 +29,7 @@ export default function MapStyleSelector({ currentStyle, onStyleChange }: MapSty
     <div className="fixed bottom-6 right-6 z-[1000] flex flex-col items-end gap-2">
       {/* Expanded Menu */}
       {isOpen && (
-        <div className="mb-2 p-2 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-zinc-200 min-w-[140px] animate-in fade-in slide-in-from-bottom-4 duration-300">
+        <div className="mb-2 p-2 bg-panel-bg backdrop-blur-xl rounded-2xl shadow-2xl border border-panel-border min-w-[140px] animate-in fade-in slide-in-from-bottom-4 duration-300">
           <div className="flex flex-col gap-1">
             {MAP_STYLES.map((style) => (
               <button
@@ -41,8 +41,8 @@ export default function MapStyleSelector({ currentStyle, onStyleChange }: MapSty
                 className={`
                   px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-widest text-left transition-all
                   ${currentStyle === style.url 
-                    ? 'bg-zinc-900 text-white shadow-lg' 
-                    : 'text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100'}
+                    ? 'bg-foreground text-background shadow-lg' 
+                    : 'text-foreground/50 hover:text-foreground hover:bg-foreground/5'}
                 `}
               >
                 {style.label}
@@ -56,8 +56,8 @@ export default function MapStyleSelector({ currentStyle, onStyleChange }: MapSty
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`
-          p-4 bg-white/95 backdrop-blur-xl rounded-full shadow-2xl border border-zinc-200 transition-all active:scale-90 group
-          ${isOpen ? 'bg-zinc-900 border-zinc-800' : 'hover:border-zinc-300'}
+          p-4 bg-panel-bg backdrop-blur-xl rounded-full shadow-2xl border border-panel-border transition-all active:scale-90 group
+          ${isOpen ? 'bg-foreground border-foreground/10' : 'hover:border-foreground/20'}
         `}
         aria-label="Change map view"
       >
@@ -70,7 +70,7 @@ export default function MapStyleSelector({ currentStyle, onStyleChange }: MapSty
           strokeWidth="2.5" 
           strokeLinecap="round" 
           strokeLinejoin="round"
-          className={isOpen ? 'text-white' : 'text-zinc-600'}
+          className={isOpen ? 'text-background' : 'text-foreground/60'}
         >
           <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
           <polyline points="2 17 12 22 22 17"></polyline>

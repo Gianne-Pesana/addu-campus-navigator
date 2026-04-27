@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
+import { ThemeToggle } from './ThemeToggle';
 
 interface FilterBarProps {
   categories: string[];
@@ -56,7 +57,7 @@ export default function FilterBar({
       {/* Home Button */}
       <Link 
         href="/"
-        className="flex-shrink-0 p-3 bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl shadow-black/5 border border-white text-zinc-600 hover:text-zinc-950 transition-all active:scale-95"
+        className="flex-shrink-0 p-3 bg-panel-bg backdrop-blur-xl rounded-2xl shadow-xl border border-panel-border text-foreground/60 hover:text-foreground transition-all active:scale-95"
         aria-label="Back to home"
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -71,7 +72,7 @@ export default function FilterBar({
         {showLeftArrow && (
           <button 
             onClick={() => handleScroll('left')}
-            className="absolute -left-2 md:-left-4 z-20 p-2 bg-white/95 backdrop-blur-md rounded-full shadow-lg border border-zinc-200 text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900 transition-all flex active:scale-90"
+            className="absolute -left-2 md:-left-4 z-20 p-2 bg-panel-bg backdrop-blur-md rounded-full shadow-lg border border-panel-border text-foreground/60 hover:text-foreground transition-all flex active:scale-90"
             aria-label="Scroll categories left"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -83,7 +84,7 @@ export default function FilterBar({
         <div 
           ref={scrollRef}
           onScroll={checkScroll}
-          className="flex items-center gap-2 p-2 bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl shadow-black/5 overflow-x-auto border border-white no-scrollbar select-none w-full"
+          className="flex items-center gap-2 p-2 bg-panel-bg backdrop-blur-xl rounded-2xl shadow-xl overflow-x-auto border border-panel-border no-scrollbar select-none w-full"
         >
           {categories.map((category) => (
             <button
@@ -92,8 +93,8 @@ export default function FilterBar({
               className={`
                 whitespace-nowrap px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex-shrink-0
                 ${activeCategory === category 
-                  ? 'bg-zinc-900 text-white shadow-lg scale-105' 
-                  : 'text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100/80'}
+                  ? 'bg-foreground text-background shadow-lg scale-105' 
+                  : 'text-foreground/50 hover:text-foreground hover:bg-foreground/5'}
               `}
             >
               {formatLabel(category)}
@@ -104,7 +105,7 @@ export default function FilterBar({
         {showRightArrow && (
           <button 
             onClick={() => handleScroll('right')}
-            className="absolute -right-2 md:-right-4 z-20 p-2 bg-white/95 backdrop-blur-md rounded-full shadow-lg border border-zinc-200 text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900 transition-all flex active:scale-90"
+            className="absolute -right-2 md:-right-4 z-20 p-2 bg-panel-bg backdrop-blur-md rounded-full shadow-lg border border-panel-border text-foreground/60 hover:text-foreground transition-all flex active:scale-90"
             aria-label="Scroll categories right"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -113,14 +114,14 @@ export default function FilterBar({
           </button>
         )}
 
-        <div className={`absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white/80 to-transparent pointer-events-none rounded-l-2xl transition-opacity duration-300 ${showLeftArrow ? 'opacity-100' : 'opacity-0'}`} />
-        <div className={`absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white/80 to-transparent pointer-events-none rounded-r-2xl transition-opacity duration-300 ${showRightArrow ? 'opacity-100' : 'opacity-0'}`} />
+        <div className={`absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-background/80 to-transparent pointer-events-none rounded-l-2xl transition-opacity duration-300 ${showLeftArrow ? 'opacity-100' : 'opacity-0'}`} />
+        <div className={`absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-background/80 to-transparent pointer-events-none rounded-r-2xl transition-opacity duration-300 ${showRightArrow ? 'opacity-100' : 'opacity-0'}`} />
       </div>
 
       {/* About Button */}
       <Link 
         href="/about"
-        className="flex-shrink-0 p-3 bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl shadow-black/5 border border-white text-zinc-600 hover:text-zinc-950 transition-all active:scale-95"
+        className="flex-shrink-0 p-3 bg-panel-bg backdrop-blur-xl rounded-2xl shadow-xl border border-panel-border text-foreground/60 hover:text-foreground transition-all active:scale-95"
         aria-label="About project"
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -129,6 +130,11 @@ export default function FilterBar({
           <line x1="12" y1="8" x2="12.01" y2="8"></line>
         </svg>
       </Link>
+
+      {/* Theme Toggle */}
+      <div className="flex-shrink-0">
+        <ThemeToggle />
+      </div>
     </div>
   );
 }

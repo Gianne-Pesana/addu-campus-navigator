@@ -41,7 +41,6 @@ const Lightbox = ({
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
   useEffect(() => {
-    console.log('Lightbox opened with photos:', photos, 'at index:', initialIndex);
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     };
@@ -76,8 +75,6 @@ const Lightbox = ({
             src={photos[currentIndex].url}
             alt={photos[currentIndex].alt}
             className="max-w-full max-h-full object-contain shadow-2xl rounded-lg"
-            onLoad={() => console.log(`Lightbox image loaded: ${photos[currentIndex].url}`)}
-            onError={(e) => console.error(`Lightbox image failed to load: ${photos[currentIndex].url}`)}
           />
         </div>
 
@@ -130,23 +127,18 @@ const PhotoSection = ({
 
   const isEmpty = validPhotos.length === 0;
 
-  useEffect(() => {
-    console.log('PhotoSection: Received raw photos:', photos);
-    console.log('PhotoSection: Processed validPhotos:', validPhotos);
-  }, [photos, validPhotos]);
-
   return (
-    <section className="mt-8 pt-8 border-t border-zinc-100">
-      <h3 className="text-[11px] font-bold text-zinc-400 uppercase tracking-widest mb-4">Photos</h3>
+    <section className="mt-8 pt-8 border-t border-panel-border">
+      <h3 className="text-[11px] font-bold text-foreground/40 uppercase tracking-widest mb-4">Photos</h3>
       
       {isEmpty ? (
-        <div className="w-full h-40 bg-zinc-50 rounded-2xl flex flex-col items-center justify-center border border-zinc-100 border-dashed">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-zinc-300 mb-2">
+        <div className="w-full h-40 bg-foreground/5 rounded-2xl flex flex-col items-center justify-center border border-panel-border border-dashed">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-foreground/20 mb-2">
             <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
             <circle cx="8.5" cy="8.5" r="1.5" />
             <polyline points="21 15 16 10 5 21" />
           </svg>
-          <span className="text-xs font-semibold text-zinc-400">No images available</span>
+          <span className="text-xs font-semibold text-foreground/40">No images available</span>
         </div>
       ) : (
         <div className="flex overflow-x-auto no-scrollbar gap-3 pb-2">
@@ -154,19 +146,13 @@ const PhotoSection = ({
             <div 
               key={index} 
               onClick={() => onPhotoClick(index)}
-              className="relative shrink-0 rounded-xl overflow-hidden bg-zinc-100 border border-zinc-200 w-48 h-36 cursor-pointer hover:ring-2 hover:ring-zinc-400 transition-all active:scale-[0.98]"
+              className="relative shrink-0 rounded-xl overflow-hidden bg-foreground/5 border border-panel-border w-48 h-36 cursor-pointer hover:ring-2 hover:ring-indigo-500/50 transition-all active:scale-[0.98]"
             >
               <img
                 src={photo.url}
                 alt={photo.alt}
                 className="w-full h-full object-cover"
                 loading="lazy"
-                onLoad={() => console.log(`Thumbnail ${index} loaded successfully: ${photo.url}`)}
-                onError={(e) => {
-                  console.error(`Thumbnail ${index} failed to load: ${photo.url}`);
-                  // Fallback to show it's failing
-                  (e.target as HTMLImageElement).style.border = '2px solid red';
-                }}
               />
             </div>
           ))}
@@ -216,7 +202,7 @@ export default function BottomSheet({ pin, onClose }: BottomSheetProps) {
         `}
       >
         <div 
-          className={`fixed inset-0 bg-zinc-900/10 backdrop-blur-[1px] transition-opacity duration-500 ${isOpen ? 'opacity-100' : 'opacity-0'}`}
+          className={`fixed inset-0 bg-background/20 dark:bg-black/40 backdrop-blur-[1px] transition-opacity duration-500 ${isOpen ? 'opacity-100' : 'opacity-0'}`}
           onClick={() => {
             setIsOpen(false);
             setTimeout(onClose, 500);
@@ -225,12 +211,12 @@ export default function BottomSheet({ pin, onClose }: BottomSheetProps) {
         
         <div 
           ref={scrollRef}
-          className="relative bg-white border-t border-zinc-200 rounded-t-[32px] shadow-[0_-12px_64px_-12px_rgba(0,0,0,0.1)] max-h-[65vh] md:max-h-[50vh] overflow-y-auto pb-12 select-none"
+          className="relative bg-background border-t border-panel-border rounded-t-[32px] shadow-[0_-12px_64px_-12px_rgba(0,0,0,0.1)] dark:shadow-[0_-12px_64px_-12px_rgba(0,0,0,0.5)] max-h-[65vh] md:max-h-[50vh] overflow-y-auto pb-12 select-none transition-colors duration-300"
         >
           
           {/* Drag Handle */}
-          <div className="sticky top-0 bg-white pt-4 pb-3 flex justify-center z-10">
-            <div className="w-12 h-1 bg-zinc-200 rounded-full" />
+          <div className="sticky top-0 bg-background pt-4 pb-3 flex justify-center z-10">
+            <div className="w-12 h-1 bg-foreground/10 rounded-full" />
           </div>
 
           <div className="px-6 md:px-10 py-2">
@@ -238,17 +224,17 @@ export default function BottomSheet({ pin, onClose }: BottomSheetProps) {
               <div className="space-y-2">
                 <div className="flex flex-wrap gap-2">
                   {pin.category.map(cat => (
-                    <span key={cat} className="inline-block px-2 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider bg-zinc-100 text-zinc-500 border border-zinc-200">
+                    <span key={cat} className="inline-block px-2 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider bg-foreground/5 text-foreground/50 border border-panel-border">
                       {cat.replace(/_/g, ' ')}
                     </span>
                   ))}
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-zinc-900 tracking-tight leading-tight">
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight leading-tight">
                   {pin.name}
                 </h2>
-                <div className="flex items-center gap-2 pt-1 text-zinc-500">
+                <div className="flex items-center gap-2 pt-1 text-foreground/50">
                   <span className="text-xs font-semibold uppercase tracking-wider">{pin.building.replace(/_/g, ' ')}</span>
-                  <div className="w-1 h-1 rounded-full bg-zinc-300" />
+                  <div className="w-1 h-1 rounded-full bg-foreground/20" />
                   <span className="text-xs font-medium uppercase tracking-wider">{formatFloors(pin.floors)}</span>
                 </div>
               </div>
@@ -258,7 +244,7 @@ export default function BottomSheet({ pin, onClose }: BottomSheetProps) {
                   setIsOpen(false);
                   setTimeout(onClose, 500);
                 }}
-                className="p-2 bg-zinc-100 rounded-xl text-zinc-400 hover:text-zinc-900 transition-colors active:scale-90"
+                className="p-2 bg-foreground/5 rounded-xl text-foreground/40 hover:text-foreground transition-colors active:scale-90"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M18 6L6 18M6 6l12 12" />
@@ -268,23 +254,23 @@ export default function BottomSheet({ pin, onClose }: BottomSheetProps) {
 
             <div className="space-y-8">
               <section>
-                <h3 className="text-[11px] font-bold text-zinc-400 uppercase tracking-widest mb-3">About this location</h3>
-                <p className="text-zinc-700 leading-relaxed text-base font-medium bg-zinc-50 p-5 rounded-2xl border border-zinc-100">
+                <h3 className="text-[11px] font-bold text-foreground/40 uppercase tracking-widest mb-3">About this location</h3>
+                <p className="text-foreground/80 leading-relaxed text-base font-medium bg-foreground/5 p-5 rounded-2xl border border-panel-border">
                   {pin.description}
                 </p>
               </section>
 
               {pin.howToGetThere && (
                 <section>
-                  <h3 className="text-[11px] font-bold text-zinc-400 uppercase tracking-widest mb-3">How to get here</h3>
-                  <div className="flex gap-4 items-start p-5 rounded-2xl bg-blue-50/50 border border-blue-100">
-                    <div className="mt-0.5 p-1.5 bg-blue-600 rounded-lg text-white">
+                  <h3 className="text-[11px] font-bold text-foreground/40 uppercase tracking-widest mb-3">How to get here</h3>
+                  <div className="flex gap-4 items-start p-5 rounded-2xl bg-indigo-500/5 border border-indigo-500/10">
+                    <div className="mt-0.5 p-1.5 bg-indigo-600 rounded-lg text-white">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                         <circle cx="12" cy="10" r="3"></circle>
                       </svg>
                     </div>
-                    <p className="text-sm text-zinc-700 leading-relaxed font-medium">
+                    <p className="text-sm text-foreground/80 leading-relaxed font-medium">
                       {pin.howToGetThere}
                     </p>
                   </div>
@@ -292,10 +278,10 @@ export default function BottomSheet({ pin, onClose }: BottomSheetProps) {
               )}
 
               <section>
-                <h3 className="text-[11px] font-bold text-zinc-400 uppercase tracking-widest mb-3">Features & Tags</h3>
+                <h3 className="text-[11px] font-bold text-foreground/40 uppercase tracking-widest mb-3">Features & Tags</h3>
                 <div className="flex flex-wrap gap-2">
                   {pin.tags.map(tag => (
-                    <span key={tag} className="px-3 py-1.5 bg-white border border-zinc-200 rounded-lg text-[11px] font-semibold text-zinc-600 shadow-sm">
+                    <span key={tag} className="px-3 py-1.5 bg-background border border-panel-border rounded-lg text-[11px] font-semibold text-foreground/70 shadow-sm">
                       {tag}
                     </span>
                   ))}
