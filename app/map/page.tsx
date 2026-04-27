@@ -5,6 +5,7 @@ import { CampusData, Pin } from '@/types/campus';
 import { MapView } from '@/components/Map';
 import FilterBar from '@/components/UI/FilterBar';
 import BottomSheet from '@/components/UI/BottomSheet';
+import MapStyleSelector from '@/components/UI/MapStyleSelector';
 
 interface GeoJSONFeature {
   id: string;
@@ -33,6 +34,7 @@ export default function MapPage() {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [categories, setCategories] = useState<string[]>(['all']);
   const [selectedPin, setSelectedPin] = useState<Pin | null>(null);
+  const [mapStyle, setMapStyle] = useState('mapbox://styles/mapbox/streets-v12');
 
   useEffect(() => {
     fetch('/data/pinData.geojson')
@@ -50,7 +52,6 @@ export default function MapPage() {
           coordinates: [feature.geometry.coordinates[1], feature.geometry.coordinates[0]]
         }));
 
-        // Extract and sort unique categories from data
         const extractedCategories = new Set<string>();
         extractedCategories.add('all');
         pins.forEach(pin => {
@@ -60,13 +61,10 @@ export default function MapPage() {
         const sortedCategories = Array.from(extractedCategories).sort((a, b) => {
           if (a === 'all') return -1;
           if (b === 'all') return 1;
-          
-          // Custom priority: Library > Study > others
           if (a === 'library') return -1;
           if (b === 'library') return 1;
           if (a === 'study') return -1;
           if (b === 'study') return 1;
-          
           return a.localeCompare(b);
         });
 
@@ -121,6 +119,12 @@ export default function MapPage() {
         activeCategory={activeCategory} 
         selectedPinId={selectedPin?.id}
         onPinClick={handlePinClick}
+        mapStyle={mapStyle}
+      />
+      
+      <MapStyleSelector 
+        currentStyle={mapStyle} 
+        onStyleChange={setMapStyle} 
       />
       
       <BottomSheet 

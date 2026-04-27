@@ -11,13 +11,15 @@ interface MapViewProps {
   activeCategory: Category;
   selectedPinId?: string;
   onPinClick: (pin: Pin) => void;
+  mapStyle: string; // Passed from parent
 }
 
 export default function MapView({ 
   data, 
   activeCategory, 
   selectedPinId,
-  onPinClick 
+  onPinClick,
+  mapStyle
 }: MapViewProps) {
   const mapRef = useRef<MapRef>(null);
 
@@ -30,14 +32,12 @@ export default function MapView({
   const handlePinClick = useCallback((pin: Pin) => {
     onPinClick(pin);
     if (mapRef.current) {
-      // Smart Centering: On mobile, we offset the center vertically to ensure
-      // the pin isn't covered by the bottom sheet.
       const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
       
       mapRef.current.easeTo({
         center: [pin.coordinates[1], pin.coordinates[0]],
         zoom: 19.5, 
-        offset: isMobile ? [0, -150] : [0, 0], // Pushes the pin into the upper viewport
+        offset: isMobile ? [0, -150] : [0, 0],
         duration: 800
       });
     }
@@ -54,7 +54,7 @@ export default function MapView({
           bearing: 50,
           pitch: 0 
         }}
-        mapStyle="mapbox://styles/mapbox/streets-v12"
+        mapStyle={mapStyle}
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
         maxBounds={maxBounds}
         minZoom={17.5}
