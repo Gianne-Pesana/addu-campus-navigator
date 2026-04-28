@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ThemeToggle } from './ThemeToggle';
+import { Menu, X, Home, Info, Settings2 } from 'lucide-react';
 
 interface FilterBarProps {
   categories: string[];
@@ -26,6 +27,7 @@ export default function FilterBar({
   const scrollRef = useRef<HTMLDivElement>(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const checkScroll = () => {
     if (scrollRef.current) {
@@ -52,21 +54,18 @@ export default function FilterBar({
   };
 
   return (
-    <div className="fixed top-6 left-1/2 -translate-x-1/2 z-[1000] w-[calc(100%-2rem)] max-w-6xl px-2 flex items-center gap-3">
+    <div className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-[1000] w-[calc(100%-1.5rem)] md:w-[calc(100%-2rem)] max-w-6xl flex items-center gap-2 md:gap-3">
       
-      {/* Home Button */}
+      {/* Desktop Home Button (Hidden on Mobile) */}
       <Link 
         href="/"
-        className="flex-shrink-0 p-3 bg-panel-bg backdrop-blur-xl rounded-2xl shadow-xl border border-panel-border text-foreground/60 hover:text-foreground transition-all active:scale-95"
+        className="hidden md:flex flex-shrink-0 p-3 bg-panel-bg backdrop-blur-xl rounded-2xl shadow-xl border border-panel-border text-foreground/60 hover:text-foreground transition-all active:scale-95"
         aria-label="Back to home"
       >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-          <polyline points="9 22 9 12 15 12 15 22"></polyline>
-        </svg>
+        <Home className="w-5 h-5" />
       </Link>
 
-      {/* Categories Wrapper */}
+      {/* Categories Wrapper - Now much wider on mobile */}
       <div className="relative group flex flex-1 items-center min-w-0">
         
         {showLeftArrow && (
@@ -84,16 +83,16 @@ export default function FilterBar({
         <div 
           ref={scrollRef}
           onScroll={checkScroll}
-          className="flex items-center gap-2 p-2 bg-panel-bg backdrop-blur-xl rounded-2xl shadow-xl overflow-x-auto border border-panel-border no-scrollbar select-none w-full"
+          className="flex items-center gap-2 p-1.5 md:p-2 bg-panel-bg backdrop-blur-xl rounded-2xl shadow-xl overflow-x-auto border border-panel-border no-scrollbar select-none w-full"
         >
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => onCategoryChange(category)}
               className={`
-                whitespace-nowrap px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex-shrink-0
+                whitespace-nowrap px-4 md:px-5 py-2 md:py-2.5 rounded-xl text-[11px] md:text-xs font-bold uppercase tracking-wider transition-all flex-shrink-0
                 ${activeCategory === category 
-                  ? 'bg-foreground text-background shadow-lg scale-105' 
+                  ? 'bg-foreground text-background shadow-lg scale-[1.02] md:scale-105' 
                   : 'text-foreground/50 hover:text-foreground hover:bg-foreground/5'}
               `}
             >
@@ -114,26 +113,58 @@ export default function FilterBar({
           </button>
         )}
 
-        <div className={`absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-background/80 to-transparent pointer-events-none rounded-l-2xl transition-opacity duration-300 ${showLeftArrow ? 'opacity-100' : 'opacity-0'}`} />
-        <div className={`absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-background/80 to-transparent pointer-events-none rounded-r-2xl transition-opacity duration-300 ${showRightArrow ? 'opacity-100' : 'opacity-0'}`} />
+        <div className={`absolute inset-y-0 left-0 w-12 md:w-16 bg-gradient-to-r from-background/80 to-transparent pointer-events-none rounded-l-2xl transition-opacity duration-300 ${showLeftArrow ? 'opacity-100' : 'opacity-0'}`} />
+        <div className={`absolute inset-y-0 right-0 w-12 md:w-16 bg-gradient-to-l from-background/80 to-transparent pointer-events-none rounded-r-2xl transition-opacity duration-300 ${showRightArrow ? 'opacity-100' : 'opacity-0'}`} />
       </div>
 
-      {/* About Button */}
+      {/* Desktop About Button (Hidden on Mobile) */}
       <Link 
         href="/about"
-        className="flex-shrink-0 p-3 bg-panel-bg backdrop-blur-xl rounded-2xl shadow-xl border border-panel-border text-foreground/60 hover:text-foreground transition-all active:scale-95"
+        className="hidden md:flex flex-shrink-0 p-3 bg-panel-bg backdrop-blur-xl rounded-2xl shadow-xl border border-panel-border text-foreground/60 hover:text-foreground transition-all active:scale-95"
         aria-label="About project"
       >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="10"></circle>
-          <line x1="12" y1="16" x2="12" y2="12"></line>
-          <line x1="12" y1="8" x2="12.01" y2="8"></line>
-        </svg>
+        <Info className="w-5 h-5" />
       </Link>
 
-      {/* Theme Toggle */}
-      <div className="flex-shrink-0">
+      {/* Desktop Theme Toggle (Hidden on Mobile) */}
+      <div className="hidden md:block flex-shrink-0">
         <ThemeToggle />
+      </div>
+
+      {/* Mobile Hamburger Menu Button */}
+      <div className="md:hidden relative">
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="flex-shrink-0 p-3 bg-panel-bg backdrop-blur-xl rounded-2xl shadow-xl border border-panel-border text-foreground/60 hover:text-foreground transition-all active:scale-90"
+          aria-label="Menu"
+        >
+          {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
+
+        {/* Mobile Menu Dropdown */}
+        {isMenuOpen && (
+          <div className="absolute top-full mt-3 right-0 w-48 bg-panel-bg backdrop-blur-2xl rounded-3xl shadow-2xl border border-panel-border p-3 animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex flex-col gap-1">
+              <Link 
+                href="/"
+                className="flex items-center gap-3 p-3 text-foreground/70 hover:text-foreground hover:bg-foreground/5 rounded-2xl transition-colors font-bold text-xs uppercase tracking-wider"
+              >
+                <Home className="w-4 h-4" /> Home
+              </Link>
+              <Link 
+                href="/about"
+                className="flex items-center gap-3 p-3 text-foreground/70 hover:text-foreground hover:bg-foreground/5 rounded-2xl transition-colors font-bold text-xs uppercase tracking-wider"
+              >
+                <Info className="w-4 h-4" /> About
+              </Link>
+              <div className="h-px bg-panel-border my-1 mx-2" />
+              <div className="flex items-center justify-between p-3">
+                <span className="text-foreground/70 font-bold text-xs uppercase tracking-wider">Appearance</span>
+                <ThemeToggle />
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
