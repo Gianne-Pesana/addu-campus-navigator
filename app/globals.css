@@ -102,3 +102,8 @@ html, body, #__next, [data-nextjs-scroll-focus-boundary] {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Hide Next.js Dev Indicator */
+nextjs-portal {
+  display: none !important;
+}
