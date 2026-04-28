@@ -55,7 +55,7 @@ export default function MapPage() {
   }, [theme, resolvedTheme]);
 
   useEffect(() => {
-    fetch('/data/pinData.geojson')
+    fetch('/api/locations')
       .then(res => res.json())
       .then((geoJson: GeoJSONData) => {
         const pins: Pin[] = geoJson.features.map((feature: GeoJSONFeature) => ({

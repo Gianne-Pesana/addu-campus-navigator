@@ -1,27 +1,57 @@
-import fs from 'fs/promises';
-import path from 'path';
-import { GeoJSONData, GeoJSONFeature } from '@/types/campus';
-
-const DATA_PATH = path.join(process.cwd(), 'public', 'data', 'pinData.geojson');
+import { createClient } from '@/utils/supabase/server';
+import { cookies } from 'next/headers';
+import { GeoJSONData, GeoJSONFeature, Pin } from '@/types/campus';
 
 export async function readGeoJSON(): Promise<GeoJSONData> {
-  try {
-    const fileContents = await fs.readFile(DATA_PATH, 'utf8');
-    return JSON.parse(fileContents) as GeoJSONData;
-  } catch (error) {
-    console.error('Failed to read GeoJSON:', error);
-    // Return empty skeleton if file doesn't exist
+  const cookieStore = await cookies();
+  const supabase = createClient(cookieStore);
+
+  const { data, error } = await supabase
+    .from('locations')
+    .select(`
+      *,
+      photos (
+        url,
+        alt_text
+      )
+    `)
+    .order('name');
+
+  if (error) {
+    console.error('Failed to read locations from Supabase:', error);
     return { type: 'FeatureCollection', features: [] };
   }
+
+  const features: GeoJSONFeature[] = data.map((loc: any) => ({
+    type: 'Feature',
+    id: loc.legacy_id || loc.id,
+    geometry: {
+      type: 'Point',
+      coordinates: [loc.longitude, loc.latitude]
+    },
+    properties: {
+      id: loc.legacy_id || loc.id,
+      name: loc.name,
+      category: loc.categories || [],
+      description: loc.description || '',
+      building: loc.building || '',
+      floors: loc.floors || [],
+      tags: loc.tags || [],
+      photos: loc.photos && loc.photos.length > 0 
+        ? loc.photos.map((p: any) => ({ url: p.url, alt: p.alt_text })) 
+        : ['n/a'],
+      howToGetThere: loc.how_to_get_there || ''
+    }
+  }));
+
+  return { type: 'FeatureCollection', features };
 }
 
 export async function writeGeoJSON(data: GeoJSONData): Promise<void> {
-  try {
-    await fs.writeFile(DATA_PATH, JSON.stringify(data, null, 2), 'utf8');
-  } catch (error) {
-    console.error('Failed to write GeoJSON:', error);
-    throw new Error('Failed to write data');
-  }
+  // This is a legacy function for the file-based system.
+  // In Supabase, we should use direct table updates.
+  // I'll keep it as a placeholder or implement it via batch upsert if needed.
+  console.warn('writeGeoJSON is deprecated. Use direct Supabase table operations.');
 }
 
 export function standardizeFeature(feature: any): GeoJSONFeature {
@@ -58,22 +88,16 @@ export function mergeFeatures(existingFeatures: GeoJSONFeature[], newFeatures: a
   for (const rawFeature of newFeatures) {
     const stdFeature = standardizeFeature(rawFeature);
     
-    // Check for duplicate by ID or exact Name (case-insensitive)
     const existingIndex = merged.findIndex(f => 
       f.id === stdFeature.id || 
       f.properties.name.toLowerCase() === stdFeature.properties.name.toLowerCase()
     );
 
     if (existingIndex !== -1) {
-      // Preserve ID and photos from existing feature, but overwrite other properties and geometry
       const existing = merged[existingIndex];
       stdFeature.id = existing.id;
       stdFeature.properties.id = existing.properties.id;
-      
-      // Merge photos (keep existing if new is "n/a", or combine if both have photos)
-      // For simplicity and safety, keep existing photos during a batch import unless explicitly overwriting via editor
       stdFeature.properties.photos = existing.properties.photos;
-
       merged[existingIndex] = stdFeature;
     } else {
       merged.push(stdFeature);
