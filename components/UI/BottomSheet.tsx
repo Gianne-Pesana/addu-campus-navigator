@@ -278,11 +278,17 @@ export default function BottomSheet({ pin, onClose }: BottomSheetProps) {
                   <section>
                     <h3 className="text-[11px] font-bold text-foreground/40 uppercase tracking-widest mb-3">Features & Tags</h3>
                     <div className="flex flex-wrap gap-2">
-                      {pin.tags.map((tag, idx) => (
-                        <span key={`tag-${tag}-${idx}`} className="px-3 py-1.5 bg-background border border-panel-border rounded-lg text-[11px] font-semibold text-foreground/70 shadow-sm">
-                          {tag}
+                      {pin.tags.length > 0 ? (
+                        pin.tags.map((tag, idx) => (
+                          <span key={`tag-${tag}-${idx}`} className="px-3 py-1.5 bg-background border border-panel-border rounded-lg text-[11px] font-semibold text-foreground/70 shadow-sm">
+                            {tag}
+                          </span>
+                        ))
+                      ) : (
+                        <span className="text-[11px] font-medium text-foreground/40 italic">
+                          No tags
                         </span>
-                      ))}
+                      )}
                     </div>
                   </section>
 
