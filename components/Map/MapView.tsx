@@ -25,13 +25,13 @@ export default function MapView({
 
   // Hardcoded Gate Polygons
   const gatesGeoJSON = useMemo(() => ({
-    type: 'FeatureCollection',
+    type: 'FeatureCollection' as const,
     features: [
       {
-        type: 'Feature',
+        type: 'Feature' as const,
         properties: { name: 'Jacinto Gate (Gate 1)' },
         geometry: {
-          type: 'Polygon',
+          type: 'Polygon' as const,
           coordinates: [[
             [125.6137146, 7.0724154],
             [125.6137285, 7.0723992],
@@ -42,10 +42,10 @@ export default function MapView({
         }
       },
       {
-        type: 'Feature',
+        type: 'Feature' as const,
         properties: { name: 'Roxas Gate (Gate 2)' },
         geometry: {
-          type: 'Polygon',
+          type: 'Polygon' as const,
           coordinates: [[
             [125.61283, 7.0717517],
             [125.6128728, 7.0717018],
@@ -56,10 +56,10 @@ export default function MapView({
         }
       },
       {
-        type: 'Feature',
+        type: 'Feature' as const,
         properties: { name: 'Claveria Gate (Gate 3)' },
         geometry: {
-          type: 'Polygon',
+          type: 'Polygon' as const,
           coordinates: [[
             [125.6123236, 7.0726244],
             [125.6123283, 7.0726433],
@@ -70,10 +70,10 @@ export default function MapView({
         }
       },
       {
-        type: 'Feature',
+        type: 'Feature' as const,
         properties: { name: 'Dotterweich Gate (Gate 4)' },
         geometry: {
-          type: 'Polygon',
+          type: 'Polygon' as const,
           coordinates: [[
             [125.613238, 7.0729153],
             [125.6132564, 7.0728959],
@@ -84,10 +84,10 @@ export default function MapView({
         }
       },
       {
-        type: 'Feature',
+        type: 'Feature' as const,
         properties: { name: 'CCFC Gate' },
         geometry: {
-          type: 'Polygon',
+          type: 'Polygon' as const,
           coordinates: [[
             [125.6131796, 7.0712868],
             [125.6132084, 7.0712521],
