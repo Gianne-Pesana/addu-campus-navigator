@@ -3,6 +3,7 @@
 import { Pin } from '@/types/campus';
 import { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { CATEGORY_COLORS } from '../Map/PinLayer';
 
 interface BottomSheetProps {
   pin: Pin | null;
@@ -224,11 +225,21 @@ export default function BottomSheet({ pin, onClose }: BottomSheetProps) {
                 <header className="flex justify-between items-start mb-8">
                   <div className="space-y-2">
                     <div className="flex flex-wrap gap-2">
-                      {pin.category.map((cat, idx) => (
-                        <span key={`cat-${cat}-${idx}`} className="inline-block px-2 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider bg-foreground/5 text-foreground/50 border border-panel-border">
-                          {cat.replace(/_/g, ' ')}
-                        </span>
-                      ))}
+                      {pin.category.map((cat, idx) => {
+                        const color = CATEGORY_COLORS[cat] || '#64748b';
+                        return (
+                          <span 
+                            key={`cat-${cat}-${idx}`} 
+                            className="inline-block px-2 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider border-none"
+                            style={{ 
+                              backgroundColor: `${color}15`, // 15 is hex for ~8% opacity
+                              color: color 
+                            }}
+                          >
+                            {cat.replace(/_/g, ' ')}
+                          </span>
+                        );
+                      })}
                     </div>
                     <h2 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight leading-tight">
                       {pin.name}

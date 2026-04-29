@@ -11,7 +11,7 @@ interface PinLayerProps {
   selectedPinId?: string;
 }
 
-const CATEGORY_COLORS: Record<string, string> = {
+export const CATEGORY_COLORS: Record<string, string> = {
   study: '#10b981',              // Green
   hangout: '#f59e0b',            // Amber/Yellow
   food: '#f97316',               // Orange
