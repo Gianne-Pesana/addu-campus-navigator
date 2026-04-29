@@ -20,7 +20,32 @@ export const CATEGORY_COLORS: Record<string, string> = {
   office: '#ef4444',             // Red
   sports_and_recreation: '#f43f5e', // Rose
   student_services: '#06b6d4',   // Cyan
+  event_venue: '#ec4899',        // Pink
 };
+
+/**
+ * Generates a deterministic color based on a string.
+ * This ensures that a new category will always get the same color.
+ */
+function getCategoryColor(category: string): string {
+  if (CATEGORY_COLORS[category]) {
+    return CATEGORY_COLORS[category];
+  }
+
+  // Simple hashing algorithm to turn string into a number
+  let hash = 0;
+  for (let i = 0; i < category.length; i++) {
+    hash = category.charCodeAt(i) + ((hash << 5) - hash);
+  }
+
+  // Convert hash to HSL for vibrant, distinguishable colors
+  // Hue: 0-360, Saturation: 65-85%, Lightness: 45-55%
+  const h = Math.abs(hash % 360);
+  const s = 75 + (Math.abs(hash % 10)); 
+  const l = 50 + (Math.abs(hash % 10) - 5); 
+
+  return `hsl(${h}, ${s}%, ${l}%)`;
+}
 
 export default function PinLayer({ 
   pins, 
@@ -41,7 +66,7 @@ export default function PinLayer({
       {filteredPins.map((pin) => {
         const isSelected = pin.id === selectedPinId;
         const primaryCategory = pin.category[0] || 'office';
-        const color = CATEGORY_COLORS[primaryCategory] || '#64748b';
+        const color = getCategoryColor(primaryCategory);
         
         // Pin Size
         const size = isSelected ? 52 : 44;

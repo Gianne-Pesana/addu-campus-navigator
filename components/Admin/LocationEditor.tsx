@@ -3,14 +3,25 @@
 import { useState, useRef } from 'react';
 import { GeoJSONFeature } from '@/types/campus';
 import { X, Trash2, Upload } from 'lucide-react';
+import Combobox from '../UI/Combobox';
 
 interface LocationEditorProps {
   feature: GeoJSONFeature | null;
   onClose: () => void;
   onSave: () => void;
+  availableBuildings: string[];
+  availableCategories: string[];
+  availableFloors: string[];
 }
 
-export default function LocationEditor({ feature, onClose, onSave }: LocationEditorProps) {
+export default function LocationEditor({ 
+  feature, 
+  onClose, 
+  onSave,
+  availableBuildings,
+  availableCategories,
+  availableFloors
+}: LocationEditorProps) {
   const isNew = !feature;
   
   // Local string states for array fields to support smooth typing with commas
@@ -207,10 +218,13 @@ export default function LocationEditor({ feature, onClose, onSave }: LocationEdi
               <label className="block text-xs font-bold text-foreground/60 uppercase tracking-wider mb-2">Name</label>
               <input type="text" name="name" value={formData.name || ''} onChange={handleChange} className="w-full px-4 py-2 bg-foreground/5 border border-panel-border rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none" />
             </div>
-            <div>
-              <label className="block text-xs font-bold text-foreground/60 uppercase tracking-wider mb-2">Building</label>
-              <input type="text" name="building" value={formData.building || ''} onChange={handleChange} className="w-full px-4 py-2 bg-foreground/5 border border-panel-border rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none" />
-            </div>
+            <Combobox 
+              label="Building" 
+              value={formData.building || ''} 
+              options={availableBuildings} 
+              onChange={(val) => setFormData(prev => ({ ...prev, building: val }))}
+              placeholder="Select or type building..."
+            />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -235,26 +249,22 @@ export default function LocationEditor({ feature, onClose, onSave }: LocationEdi
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div>
-              <label className="block text-xs font-bold text-foreground/60 uppercase tracking-wider mb-2">Categories</label>
-              <input 
-                type="text" 
-                value={categoriesStr} 
-                onChange={(e) => setCategoriesStr(e.target.value)} 
-                placeholder="office, study, etc"
-                className="w-full px-4 py-2 bg-foreground/5 border border-panel-border rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none text-sm" 
-              />
-            </div>
-            <div>
-              <label className="block text-xs font-bold text-foreground/60 uppercase tracking-wider mb-2">Floors</label>
-              <input 
-                type="text" 
-                value={floorsStr} 
-                onChange={(e) => setFloorsStr(e.target.value)} 
-                placeholder="1st, 2nd, etc"
-                className="w-full px-4 py-2 bg-foreground/5 border border-panel-border rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none text-sm" 
-              />
-            </div>
+            <Combobox 
+              label="Categories" 
+              value={categoriesStr} 
+              options={availableCategories} 
+              onChange={setCategoriesStr}
+              multiSelect
+              placeholder="Search or add category..."
+            />
+            <Combobox 
+              label="Floors" 
+              value={floorsStr} 
+              options={availableFloors} 
+              onChange={setFloorsStr}
+              multiSelect
+              placeholder="Search or add floor..."
+            />
             <div>
               <label className="block text-xs font-bold text-foreground/60 uppercase tracking-wider mb-2">Tags</label>
               <input 

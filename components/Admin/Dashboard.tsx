@@ -74,6 +74,15 @@ export default function Dashboard() {
     return ['all', ...Array.from(bldgs).sort()];
   }, [data]);
 
+  const availableBuildings = useMemo(() => buildings.filter(b => b !== 'all'), [buildings]);
+  const availableCategories = useMemo(() => categories.filter(c => c !== 'all'), [categories]);
+  const availableFloors = useMemo(() => {
+    if (!data) return [];
+    const floors = new Set<string>();
+    data.features.forEach(f => f.properties.floors.forEach(fl => floors.add(fl)));
+    return Array.from(floors).sort();
+  }, [data]);
+
   // Filtering Logic
   const filteredFeatures = useMemo(() => {
     if (!data) return [];
@@ -271,6 +280,9 @@ export default function Dashboard() {
       {(editingFeature || isCreating) && (
         <LocationEditor 
           feature={editingFeature} 
+          availableBuildings={availableBuildings}
+          availableCategories={availableCategories}
+          availableFloors={availableFloors}
           onClose={() => {
             setEditingFeature(null);
             setIsCreating(false);
