@@ -44,33 +44,34 @@ export default function PinLayer({
         const color = CATEGORY_COLORS[primaryCategory] || '#64748b';
         
         // Pin Size
-        const size = isSelected ? 48 : 40;
+        const size = isSelected ? 52 : 44;
         
         return (
           <Marker
             key={pin.id}
             longitude={pin.coordinates[1]}
             latitude={pin.coordinates[0]}
-            anchor="bottom" // Anchor to bottom for a proper map pin feel
+            anchor="bottom"
             onClick={(e) => {
               e.originalEvent.stopPropagation();
               onPinClick(pin);
             }}
           >
             <div 
+              className="group relative flex flex-col items-center justify-center cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]"
               style={{
                 width: `${size}px`,
                 height: `${size}px`,
-                cursor: 'pointer',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                filter: isSelected ? 'drop-shadow(0 12px 24px rgba(0,0,0,0.3))' : 'drop-shadow(0 4px 8px rgba(0,0,0,0.15))',
-                transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-                transform: isSelected ? 'scale(1.1) translateY(-4px)' : 'scale(1)',
+                filter: isSelected ? 'drop-shadow(0 12px 16px rgba(0,0,0,0.4))' : 'drop-shadow(0 4px 6px rgba(0,0,0,0.2))',
+                transform: isSelected ? 'scale(1.1) translateY(-6px)' : 'scale(1)',
+                zIndex: isSelected ? 50 : 1,
               }}
             >
+              {/* Ground Shadow Base */}
+              <div 
+                className={`absolute -bottom-1 left-1/2 -translate-x-1/2 w-4 h-1.5 bg-black/20 rounded-[100%] blur-[2px] transition-all duration-300 ${isSelected ? 'scale-150 opacity-40' : 'scale-100 opacity-20'}`}
+              />
+
               {/* Modern Teardrop Pin Shape */}
               <svg 
                 width={size} 
@@ -78,20 +79,32 @@ export default function PinLayer({
                 viewBox="0 0 24 24" 
                 fill="none" 
                 xmlns="http://www.w3.org/2000/svg"
+                className="transition-transform duration-200 group-hover:scale-110"
               >
                 <path 
-                  d="M12 21C16 17 20 13.4183 20 9C20 4.58172 16.4183 1 12 1C7.58172 1 4 4.58172 4 9C4 13.4183 8 17 12 21Z" 
+                  d="M12 21.7C16.5 17.5 20 13.5 20 9.2C20 4.7 16.4 1.1 12 1.1C7.6 1.1 4 4.7 4 9.2C4 13.5 7.5 17.5 12 21.7Z" 
                   fill={color} 
                   stroke="white" 
-                  strokeWidth="2"
+                  strokeWidth="2.2"
+                  className="transition-all duration-200"
                 />
-                <circle cx="12" cy="9" r="3.5" fill="white" />
+                <circle cx="12" cy="9.2" r="4.2" fill="white" className="opacity-95" />
+                <circle cx="12" cy="9.2" r="2.2" fill={color} />
               </svg>
               
-              {/* Subtle Pulse for selected pin */}
+              {/* Interactive Halo / Pulse */}
               {isSelected && (
-                <div className="absolute inset-0 rounded-full animate-ping bg-zinc-900/5 -z-10" />
+                <div 
+                  className="absolute inset-0 rounded-full animate-ping bg-white/40 -z-10"
+                  style={{ animationDuration: '2s' }}
+                />
               )}
+
+              {/* Hover Glow */}
+              <div 
+                className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-200 -z-20 scale-150"
+                style={{ backgroundColor: color }}
+              />
             </div>
           </Marker>
         );
