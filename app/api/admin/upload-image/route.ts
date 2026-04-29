@@ -3,7 +3,6 @@ import { verifyAuth } from '@/lib/auth';
 import { createClient } from '@/utils/supabase/server';
 import { cookies } from 'next/headers';
 import sharp from 'sharp';
-import heicConvert from 'heic-convert';
 
 import { createAdminClient } from '@/utils/supabase/admin';
 
@@ -42,12 +41,15 @@ export async function POST(request: NextRequest) {
     // Convert HEIC to JPEG if necessary
     const isHeic = image.type === 'image/heic' || 
                    image.type === 'image/heif' || 
+                   image.type === 'image/heic-sequence' ||
                    image.name.toLowerCase().endsWith('.heic') || 
                    image.name.toLowerCase().endsWith('.heif');
 
     if (isHeic) {
+      // @ts-ignore - heic-convert might not have perfect types for default import in all environments
+      const heicConvert = (await import('heic-convert')).default;
       inputBuffer = Buffer.from(await heicConvert({
-        buffer: inputBuffer,
+        buffer: inputBuffer as any,
         format: 'JPEG',
         quality: 1
       }));
