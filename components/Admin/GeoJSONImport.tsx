@@ -29,7 +29,10 @@ export default function GeoJSONImport({ onImportSuccess }: GeoJSONImportProps) {
       const data = await res.json();
 
       if (res.ok) {
-        setMessage({ type: 'success', text: `Successfully imported/merged ${data.count} features.` });
+        setMessage({ 
+          type: 'success', 
+          text: `Import complete: ${data.count} new locations added, ${data.skipped} skipped as duplicates.` 
+        });
         setFile(null);
         onImportSuccess();
       } else {
@@ -47,7 +50,7 @@ export default function GeoJSONImport({ onImportSuccess }: GeoJSONImportProps) {
       <div className="bg-panel-bg border border-panel-border rounded-3xl p-8 shadow-sm">
         <h2 className="text-xl font-bold mb-2">Import GeoJSON Data</h2>
         <p className="text-sm text-foreground/60 mb-8 leading-relaxed">
-          Upload a <code>.geojson</code> file containing locations. The system will automatically standardize the data format. Existing locations (matched by ID or exact name) will be merged and updated, while new ones will be added.
+          Upload a <code>.geojson</code> file containing locations. The system will automatically standardize the data format. Existing locations (matched by ID, name, or exact coordinates) will be skipped to prevent overriding current data.
         </p>
 
         <div className="border-2 border-dashed border-panel-border rounded-2xl p-10 text-center hover:bg-foreground/5 transition-colors mb-6">

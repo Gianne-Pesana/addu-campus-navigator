@@ -27,12 +27,32 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid GeoJSON format' }, { status: 400 });
     }
 
+    const { data: existingLocations, error: fetchError } = await supabase
+      .from('locations')
+      .select('legacy_id, name, longitude, latitude');
+
+    if (fetchError) {
+      throw fetchError;
+    }
+
     const newFeatures = parsedData.features;
     let successCount = 0;
+    let skipCount = 0;
 
     for (const rawFeature of newFeatures) {
         const feature = standardizeFeature(rawFeature);
         const { properties, geometry } = feature;
+
+        const isDuplicate = existingLocations.some(loc => 
+          (feature.id && loc.legacy_id === feature.id) || 
+          (loc.name.toLowerCase() === properties.name.toLowerCase()) ||
+          (loc.longitude === geometry.coordinates[0] && loc.latitude === geometry.coordinates[1])
+        );
+
+        if (isDuplicate) {
+          skipCount++;
+          continue;
+        }
 
         const locationData = {
           legacy_id: feature.id,
@@ -47,14 +67,27 @@ export async function POST(request: NextRequest) {
           tags: properties.tags,
         };
 
-        const { error } = await supabase
+        const { error: insertError } = await supabase
           .from('locations')
-          .upsert(locationData, { onConflict: 'legacy_id' });
+          .insert(locationData);
 
-        if (!error) successCount++;
+        if (!insertError) {
+          successCount++;
+          // Add to existingLocations to prevent duplicates within the same import file
+          existingLocations.push({
+            legacy_id: feature.id,
+            name: properties.name,
+            longitude: geometry.coordinates[0],
+            latitude: geometry.coordinates[1]
+          });
+        }
     }
 
-    return NextResponse.json({ success: true, count: successCount });
+    return NextResponse.json({ 
+      success: true, 
+      count: successCount, 
+      skipped: skipCount 
+    });
   } catch (error: any) {
     console.error('Import error:', error);
     return NextResponse.json({ error: error.message }, { status: 500 });

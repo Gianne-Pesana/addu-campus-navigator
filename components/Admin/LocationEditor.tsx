@@ -91,7 +91,7 @@ export default function LocationEditor({ feature, onClose, onSave }: LocationEdi
   };
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+    let file = e.target.files?.[0];
     if (!file) return;
     
     if (isNew) {
@@ -100,6 +100,18 @@ export default function LocationEditor({ feature, onClose, onSave }: LocationEdi
     }
 
     setUploadingImage(true);
+
+    // Client-side compression for large images to avoid 413 error
+    if (file.size > 2 * 1024 * 1024) { // If larger than 2MB, compress
+      try {
+        const compressedBlob = await compressImage(file);
+        file = new File([compressedBlob], file.name, { type: 'image/jpeg' });
+      } catch (err) {
+        console.error('Compression failed:', err);
+        // Fallback to original file if compression fails
+      }
+    }
+
     const payload = new FormData();
     payload.append('image', file);
     payload.append('locationId', feature.id);
@@ -130,6 +142,46 @@ export default function LocationEditor({ feature, onClose, onSave }: LocationEdi
       setUploadingImage(false);
       if (fileInputRef.current) fileInputRef.current.value = '';
     }
+  };
+
+  // Helper function for client-side compression
+  const compressImage = (file: File): Promise<Blob> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (event) => {
+        const img = new Image();
+        img.src = event.target?.result as string;
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const MAX_WIDTH = 1600;
+          const MAX_HEIGHT = 1600;
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height) {
+            if (width > MAX_WIDTH) {
+              height *= MAX_WIDTH / width;
+              width = MAX_WIDTH;
+            }
+          } else {
+            if (height > MAX_HEIGHT) {
+              width *= MAX_HEIGHT / height;
+              height = MAX_HEIGHT;
+            }
+          }
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx?.drawImage(img, 0, 0, width, height);
+          canvas.toBlob((blob) => {
+            if (blob) resolve(blob);
+            else reject(new Error('Canvas to Blob failed'));
+          }, 'image/jpeg', 0.85); // 0.85 quality is a good balance
+        };
+      };
+      reader.onerror = (error) => reject(error);
+    });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
