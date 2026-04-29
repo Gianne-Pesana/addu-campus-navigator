@@ -7,6 +7,7 @@ import FilterBar from '@/components/UI/FilterBar';
 import BottomSheet from '@/components/UI/BottomSheet';
 import MapStyleSelector from '@/components/UI/MapStyleSelector';
 import { useTheme } from 'next-themes';
+import { createClient } from '@/utils/supabase/client';
 
 interface GeoJSONFeature {
   id: string;
@@ -38,11 +39,67 @@ export default function MapPage() {
   const [selectedPin, setSelectedPin] = useState<Pin | null>(null);
   
   const { theme, resolvedTheme } = useTheme();
+  const supabase = createClient();
   
   const lightStyle = 'mapbox://styles/gpesana/cmohc84g1001f01rech0p3ceu';
   const darkStyle = 'mapbox://styles/gpesana/cmohc4mc7007n01r40ewxeawu';
 
   const [mapStyle, setMapStyle] = useState(lightStyle);
+
+  const fetchPins = async () => {
+    try {
+      const res = await fetch('/api/locations');
+      const geoJson: GeoJSONData = await res.json();
+      
+      const pins: Pin[] = geoJson.features.map((feature: GeoJSONFeature) => ({
+        id: feature.properties.id,
+        name: feature.properties.name,
+        category: feature.properties.category,
+        description: feature.properties.description,
+        building: feature.properties.building,
+        floors: feature.properties.floors,
+        tags: feature.properties.tags,
+        photos: feature.properties.photos || ["n/a"],
+        howToGetThere: feature.properties.howToGetThere,
+        coordinates: [feature.geometry.coordinates[1], feature.geometry.coordinates[0]]
+      }));
+
+      const extractedCategories = new Set<string>();
+      extractedCategories.add('all');
+      pins.forEach(pin => {
+        pin.category.forEach(cat => extractedCategories.add(cat));
+      });
+
+      const sortedCategories = Array.from(extractedCategories).sort((a, b) => {
+        if (a === 'all') return -1;
+        if (b === 'all') return 1;
+        if (a === 'library') return -1;
+        if (b === 'library') return 1;
+        if (a === 'study') return -1;
+        if (b === 'study') return 1;
+        return a.localeCompare(b);
+      });
+
+      const boundary: [number, number][] = [
+        [7.0715528428473675, 125.61437821894305],
+        [7.073515053389983, 125.61292674674525],
+        [7.0727532895433995, 125.61188108286865],
+        [7.070791075762912, 125.61333255506639],
+        [7.0715528428473675, 125.61437821894305]
+      ];
+
+      setCategories(sortedCategories);
+      setData({ pins, boundary });
+
+      // Update selected pin if it was changed
+      if (selectedPin) {
+        const updated = pins.find(p => p.id === selectedPin.id);
+        if (updated) setSelectedPin(updated);
+      }
+    } catch (err) {
+      console.error('Failed to load pin data:', err);
+    }
+  };
 
   // Sync map style with theme changes
   useEffect(() => {
@@ -55,51 +112,26 @@ export default function MapPage() {
   }, [theme, resolvedTheme]);
 
   useEffect(() => {
-    fetch('/api/locations')
-      .then(res => res.json())
-      .then((geoJson: GeoJSONData) => {
-        const pins: Pin[] = geoJson.features.map((feature: GeoJSONFeature) => ({
-          id: feature.properties.id,
-          name: feature.properties.name,
-          category: feature.properties.category,
-          description: feature.properties.description,
-          building: feature.properties.building,
-          floors: feature.properties.floors,
-          tags: feature.properties.tags,
-          photos: feature.properties.photos || ["n/a"],
-          howToGetThere: feature.properties.howToGetThere,
-          coordinates: [feature.geometry.coordinates[1], feature.geometry.coordinates[0]]
-        }));
+    fetchPins();
 
-        const extractedCategories = new Set<string>();
-        extractedCategories.add('all');
-        pins.forEach(pin => {
-          pin.category.forEach(cat => extractedCategories.add(cat));
-        });
+    const channel = supabase
+      .channel('map-realtime')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'locations' },
+        () => fetchPins()
+      )
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'photos' },
+        () => fetchPins()
+      )
+      .subscribe();
 
-        const sortedCategories = Array.from(extractedCategories).sort((a, b) => {
-          if (a === 'all') return -1;
-          if (b === 'all') return 1;
-          if (a === 'library') return -1;
-          if (b === 'library') return 1;
-          if (a === 'study') return -1;
-          if (b === 'study') return 1;
-          return a.localeCompare(b);
-        });
-
-        const boundary: [number, number][] = [
-          [7.0715528428473675, 125.61437821894305],
-          [7.073515053389983, 125.61292674674525],
-          [7.0727532895433995, 125.61188108286865],
-          [7.070791075762912, 125.61333255506639],
-          [7.0715528428473675, 125.61437821894305]
-        ];
-
-        setCategories(sortedCategories);
-        setData({ pins, boundary });
-      })
-      .catch(err => console.error('Failed to load pin data:', err));
-  }, []);
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [selectedPin?.id]);
 
   const handlePinClick = (pin: Pin) => {
     setSelectedPin(pin);

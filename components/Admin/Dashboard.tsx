@@ -6,6 +6,7 @@ import LocationEditor from './LocationEditor';
 import GeoJSONImport from './GeoJSONImport';
 import { ThemeToggle } from '../UI/ThemeToggle';
 import { Search, Filter, X } from 'lucide-react';
+import { createClient } from '@/utils/supabase/client';
 
 export default function Dashboard() {
   const [data, setData] = useState<GeoJSONData | null>(null);
@@ -18,6 +19,8 @@ export default function Dashboard() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedBuilding, setSelectedBuilding] = useState('all');
+
+  const supabase = createClient();
 
   const fetchLocations = async () => {
     setLoading(true);
@@ -36,6 +39,25 @@ export default function Dashboard() {
 
   useEffect(() => {
     fetchLocations();
+
+    // Subscribe to real-time changes
+    const channel = supabase
+      .channel('admin-dashboard-realtime')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'locations' },
+        () => fetchLocations()
+      )
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'photos' },
+        () => fetchLocations()
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   const handleDelete = async (id: string) => {
@@ -45,11 +67,10 @@ export default function Dashboard() {
       const res = await fetch(`/api/admin/locations?id=${id}`, {
         method: 'DELETE'
       });
-      if (res.ok) {
-        fetchLocations();
-      } else {
+      if (!res.ok) {
         alert('Failed to delete location');
       }
+      // Real-time subscription will handle the UI update
     } catch (err) {
       alert('Error deleting location');
     }
