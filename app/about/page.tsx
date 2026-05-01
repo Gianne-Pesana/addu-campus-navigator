@@ -79,7 +79,7 @@ export default function AboutPage() {
 
         <footer className="mt-16 text-center">
           <p className="text-xs font-black text-foreground/40 uppercase tracking-[0.4em] transition-colors">
-            Ateneo de Davao University • 2024
+            Ateneo de Davao University • 2026
           </p>
         </footer>
       </main>
